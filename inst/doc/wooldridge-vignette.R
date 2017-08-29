@@ -22,11 +22,14 @@ stargazer(hourly_wage_model,  single.row = TRUE, header = FALSE)
 ## ---- echo = TRUE, eval = TRUE, warning=FALSE----------------------------
 data("jtrain")
 
+## ---- echo = TRUE, eval = FALSE, warning=FALSE---------------------------
+#  View(jtrain)
+
 ## ------------------------------------------------------------------------
 index <- jtrain$year == 1987 & jtrain$union == 0
 
 ## ------------------------------------------------------------------------
-jtrain_1987_nonunion <- jtrain[index,]
+jtrain_1987_nonunion <- jtrain[index, ]
 
 ## ------------------------------------------------------------------------
 linear_model <- lm(lscrap ~ hrsemp + lsales + lemploy, data = jtrain_1987_nonunion)
@@ -50,6 +53,7 @@ summary(LM_u_model)$r.square
 
 ## ------------------------------------------------------------------------
 LM_test <- nobs(LM_u_model) * 0.0015
+
 LM_test
 
 ## ------------------------------------------------------------------------
@@ -57,6 +61,9 @@ qchisq(1 - 0.10, 2)
 
 ## ------------------------------------------------------------------------
 1-pchisq(LM_test, 2)
+
+## ------------------------------------------------------------------------
+data(hrpice2)
 
 ## ---- tidy = TRUE--------------------------------------------------------
 housing_standard <- lm(scale(price)~0+scale(nox)+scale(crime)+scale(rooms)+scale(dist) + scale(stratio), data = hprice2)
@@ -68,7 +75,7 @@ stargazer(housing_standard,  single.row = TRUE, header = FALSE)
 housing_interactive <- lm(lprice ~ lnox + log(dist) + rooms+I(rooms^2) + stratio, data = hprice2)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
-stargazer(housing_standard,  echo=FALSE, housing_interactive, single.row = TRUE, header = FALSE)
+stargazer(housing_standard, housing_interactive, single.row = TRUE, header = FALSE)
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  ?hprice1
@@ -81,6 +88,7 @@ stargazer(housing_qualitative,  single.row = TRUE, header = FALSE)
 
 ## ------------------------------------------------------------------------
 data("gpa1")
+
 gpa1$parcoll <- as.integer(gpa1$fathcoll==1 | gpa1$mothcoll)
 
 ## ------------------------------------------------------------------------
@@ -100,10 +108,11 @@ data(rdchem)
 all_rdchem <- lm(rdintens ~ sales + profmarg, data = rdchem)
 
 ## ---- tidy=TRUE----------------------------------------------------------
-plot(rdintens ~ sales, pch = 21, bg = "lightblue", data = rdchem,
-     main = "FIGURE 9.1: Scatterplot of R&D intensity against firm sales",
-     xlab = "firm sales (in millions of dollars)",
-     ylab = "R&D as a percentage of sales")
+plot_title <- "FIGURE 9.1: Scatterplot of R&D intensity against firm sales"
+x_axis <- "firm sales (in millions of dollars)"
+y_axis <- "R&D as a percentage of sales"
+
+plot(rdintens ~ sales, pch = 21, bg = "lightgrey", data = rdchem, main = plot_title, xlab = x_axis, ylab = y_axis)
 
 ## ------------------------------------------------------------------------
 smallest_rdchem <- lm(rdintens ~ sales + profmarg, data = rdchem, 
@@ -148,8 +157,7 @@ stargazer(wage_time, wage_diff,  single.row = TRUE, header = FALSE)
 ## ---- tidy=TRUE----------------------------------------------------------
 data("barium")
 barium_model <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
-
-## ---- tidy=TRUE----------------------------------------------------------
+# Load the `prais` package, use the `prais.winsten` function to estimate.
 library(prais)
 barium_prais_winsten <- prais.winsten(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
 
@@ -182,6 +190,7 @@ stargazer(arch_model, single.row = TRUE, header = FALSE)
 
 ## ------------------------------------------------------------------------
 data("traffic1")
+
 DD_model <- lm(cdthrte ~ copen + cadmn, data = traffic1)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
@@ -189,7 +198,9 @@ stargazer(DD_model,  single.row = TRUE, header = FALSE)
 
 ## ---- tidy=TRUE----------------------------------------------------------
 library(plm)
+
 data("jtrain")
+
 scrap_panel <- plm(lscrap ~ d88 + d89 + grant + grant_1, data = jtrain,
             index = c('fcode','year'), model = 'within', effect ='individual')
 
@@ -246,11 +257,14 @@ stargazer(open_model, inflation_IV,  single.row = TRUE, header = FALSE)
 ## ---- tidy=TRUE, warning=FALSE-------------------------------------------
 data("crime1")
 
+## ---- tidy=TRUE, warning=FALSE-------------------------------------------
 formula <- (narr86 ~ pcnv + avgsen + tottime + ptime86 + qemp86 + inc86 + black + hispan + born60)
 
+## ---- tidy=TRUE, warning=FALSE-------------------------------------------
 econ_crime_model <- lm(formula, data = crime1)
 
-econ_crim_poisson <- glm(formula, data = crime1, family=poisson)
+## ---- tidy=TRUE, warning=FALSE-------------------------------------------
+econ_crim_poisson <- glm(formula, data = crime1, family = poisson)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(econ_crime_model, econ_crim_poisson,  single.row = TRUE, header = FALSE)
@@ -258,8 +272,10 @@ stargazer(econ_crime_model, econ_crim_poisson,  single.row = TRUE, header = FALS
 ## ------------------------------------------------------------------------
 data("phillips")
 
+## ------------------------------------------------------------------------
 unem_AR1 <- lm(unem ~ unem_1, data = phillips, subset = (year <= 1996))
 
+## ------------------------------------------------------------------------
 unem_inf_VAR1 <- lm(unem ~ unem_1 + inf_1, data = phillips, subset = (year <= 1996))
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, echo=FALSE---------

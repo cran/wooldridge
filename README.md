@@ -1,41 +1,59 @@
 # wooldridge 
 
-[![Travis-CI Build Status](https://travis-ci.org/JustinMShea/wooldridge.svg?branch=master)](https://travis-ci.org/JustinMShea/wooldridge) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JustinMShea/wooldRidge?branch=master&svg=true)](https://ci.appveyor.com/project/JustinMShea/wooldRidge)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/wooldridge)](https://cran.r-project.org/package=wooldridge) [![Travis-CI Build Status](https://travis-ci.org/JustinMShea/wooldridge.svg?branch=master)](https://travis-ci.org/JustinMShea/wooldridge) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JustinMShea/wooldRidge?branch=master&svg=true)](https://ci.appveyor.com/project/JustinMShea/wooldRidge) 
 
-Economics students new to both Econometrics and R may find the tasks of learning both a bit daunting. However, if your text is **"Introductory Econometrics: A Modern Approach"** by Jeffrey M. Wooldridge, then you are in luck! The `wooldridge` data package aims to lighten the task by loading any data set from the text with a single command. 
+Economics students new to both econometrics and **R** may find the simultaneous introduction to both a bit challenging. However, if your text is **"Introductory Econometrics: A Modern Approach"** by Jeffrey M. Wooldridge, then you are in luck! 
 
-In addition the package contains documentation for each data set and all data has been efficiently compressed resulting in a total size that is **62.73%** of its original size. Just install the package, load it, and call the data set you need to work with.
+The `wooldridge` data package aims to lighten the task by loading any data set from the text through a single command. The package contains documentation for each set and all data has been compressed to 62.73% of its original size. Just install the package, load it, and use the `data()` function to call the data set you need to work with.
 
-_**But wait...there's more!**_ Contained in the package is also the [`wooldridge-vignette`](https://github.com/JustinMShea/wooldridge/tree/master/vignettes/wooldridge-vignette.pdf), which shows you how to recreate examples from every chapter of the text, 
-offering a relevant introduction to R's statistical model syntax.
+_**But wait...there's more!**_ Act now and you will receive the  [`wooldridge-vignette`](https://github.com/JustinMShea/wooldridge/tree/master/vignettes/wooldridge-vignette.pdf)!:sparkles: The vignette illustrates solutions to examples from each chapter of the text, offering a relevant introduction to econometric modelling with **R**. The vignette also includes an Appendix to helpful resources, such as *Using R for Introductory Econometrics* by Florian Hess.
 
+While the course companion site also provides publicly available data sets for Eviews, Excel, MiniTab, and Stata commercial software, **R** is the open source option. Furthermore, using **R** while building a foundation in econometrics, can become the first step in a student's longer journey toward using the most innovative new methods in statistical computing for handling larger, more modern data sets.
 
-**Note:** All data sets are from the 5th edition (Wooldridge 2013, `ISBN-13:978-1-111-53104-1`), which is compatible with most other editions.
+**Note:** All data sets are from the 5th edition (Wooldridge 2013, `ISBN-13: 978-1-111-53104-1`), which is compatible with most other editions.
 
 
 ## Installation
 
-If you don't already have `devtools` installed, try the `ghit` package, a lightweight github installer.
+Install directly from CRAN, which depends on R version >= 3.4.0.
 
 ```{r}
-install.packages("ghit")
+install.packages("wooldridge")
 ```
 
-Next, install 'wooldridge' package from my GitHub page.
+For developer version (with dependencies relaxed to R version >= 3.1.0),
+install from GitHub.
 
 ```{r}
-ghit::install_github("JustinMShea/wooldridge")
+devtools::install_github("JustinMShea/wooldridge")
 ```
+
+Note: the vignette may fail to build with older versions of R, knitr, and devtools. However, you can download that here and the data will still be accessible.
+
+```{r}
+devtools::install_github("JustinMShea/wooldridge", build_vignettes = TRUE)
+```
+
 
 ## Example
 
-Load the `wooldridge` package and use the `data()` function to load the desired set.
+Load the `wooldridge` package and use the `data()` function to load the desired data set.
+Data set names match those in the text.
+
 ```{r}
 library(wooldridge)
+
 data("jtrain")
 ```
 
-Check out the documentation on the variable column names and what they are.
+View the `jtrain` data set
+
+```{r}
+View(jtrain)
+```
+
+Check out the documentation on `jtrain`, including variable column names and what they are.
+
 ```{r}
 ?jtrain
 ```

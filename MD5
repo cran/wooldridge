@@ -1,6 +1,7 @@
-d1ff36920ca89ef3e28f17d422f08079 *DESCRIPTION
+6243caa50ef2bcf9488227f34cd165a2 *DESCRIPTION
 9c25e1cdc3b5122842a6a70fab49a522 *GPL-3
 b5b2e20c75457107297b566908b8c29d *NAMESPACE
+9fb77e0920f11aba2a8faf489f44030e *NEWS.md
 cc92f1d804384bc42f04a8813d67ab27 *R/admnrev.R
 326e9d5ad5ed4f1449b0a030bbcc8ff8 *R/affairs.R
 c2ebfa4aabcf98bf6e85ac2c131fcc43 *R/airfare.R
@@ -104,8 +105,8 @@ f7d68febbcbabb552fb1f43442458e7c *R/wage2.R
 77f8bc8e04ab0a0933fa147d79c1f138 *R/wagepan.R
 1f7a942b47e00270e9f2bcbbe341354a *R/wageprc.R
 492412ee8fed8344383b974332f1ba8b *R/wine.R
-a8eaf30db21029537957031a37c1f1ec *README.md
-353aa9a7cf7b47f3942a1c82b7398806 *build/vignette.rds
+e8a9550639d822ed0e5c910fd4ac1dde *README.md
+8acc036e7a4cea3437ba3915cbafba0f *build/vignette.rds
 65d15bd085bb0e19f89633f14d5079c8 *data/401k.RData
 95a75023feb74f61de962ed3cc929eb2 *data/401ksubs.RData
 928dbb291c24bfb90a4134c186e5ff6f *data/admnrev.RData
@@ -212,9 +213,9 @@ d3adfb74b9b1c35630e9cd1069ae3771 *data/vote1.RData
 07820abdd61af994b3e883d27eb2b755 *data/wagepan.RData
 81dba7e0b459560ac89bed51d7268a72 *data/wageprc.RData
 d5d299ea10d36a7876d5460546df1f5f *data/wine.RData
-c22c0cd1f6eff03d38dda531e5877658 *inst/doc/wooldridge-vignette.R
-a3aa327bd998a3aeb20eb44a83154d0a *inst/doc/wooldridge-vignette.Rmd
-7b84e559a2ca6ee4d912a1959542db78 *inst/doc/wooldridge-vignette.pdf
+48a9e910b937758154c0dfc452b1dd81 *inst/doc/wooldridge-vignette.R
+8d201692a7352d18db441f95577da0dc *inst/doc/wooldridge-vignette.Rmd
+f2fdfdab81a1ebc13e15f31feb9da4bf *inst/doc/wooldridge-vignette.pdf
 a5bde199dc623b746b4db160499a6929 *man/401k.Rd
 dc3362d0b034c46af181f382685a7241 *man/401ksubs.Rd
 2d625e2248bdc29d0b9a01abeb6af8d7 *man/admnrev.Rd
@@ -322,4 +323,5 @@ dcb0c0109e140a5147e6f29c9ffcbe35 *man/wage2.Rd
 f6a78fd4f877b8237d0f595dc1abc76e *man/wine.Rd
 61a701b74d726678a3f8042bb76a52b6 *tests/testthat.R
 a3540188d26c4c4b64dd873bc1335e5e *tests/testthat/test_data.R
-a3aa327bd998a3aeb20eb44a83154d0a *vignettes/wooldridge-vignette.Rmd
+8d201692a7352d18db441f95577da0dc *vignettes/wooldridge-vignette.Rmd
+a1465bc83f795094290a6d1b9531a96f *vignettes/wooldridge-vignette.html

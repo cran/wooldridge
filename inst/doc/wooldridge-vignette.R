@@ -1,11 +1,15 @@
-## ---- echo = TRUE, eval = TRUE, warning=FALSE----------------------------
+## ---- echo = TRUE, eval = FALSE, warning=FALSE---------------------------
+#  install.packages("wooldridge")
+
+## ---- echo = TRUE, eval = TRUE, warning=FALSE, message=FALSE-------------
 library(wooldridge)
 
 ## ---- echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE----------------
 library(stargazer)
 
-## ------------------------------------------------------------------------
-data(wage1)
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("wage1")
+#  ?wage1
 
 ## ------------------------------------------------------------------------
 log_wage_model <- lm(lwage ~ educ, data = wage1)
@@ -19,10 +23,11 @@ hourly_wage_model <- lm(lwage ~ educ + exper + tenure, data = wage1)
 ## ---- results = 'asis', warning=FALSE, message=FALSE---------------------
 stargazer(hourly_wage_model,  single.row = TRUE, header = FALSE)
 
-## ---- echo = TRUE, eval = TRUE, warning=FALSE----------------------------
+## ---- echo = TRUE, eval = TRUE, warning=FALSE, message=FALSE-------------
 data("jtrain")
 
 ## ---- echo = TRUE, eval = FALSE, warning=FALSE---------------------------
+#  ?jtrain
 #  View(jtrain)
 
 ## ------------------------------------------------------------------------
@@ -37,8 +42,9 @@ linear_model <- lm(lscrap ~ hrsemp + lsales + lemploy, data = jtrain_1987_nonuni
 ## ---- results = 'asis', warning=FALSE, message=FALSE---------------------
 stargazer(linear_model,  single.row = TRUE, header = FALSE)
 
-## ------------------------------------------------------------------------
-data(crime1)
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("crime1")
+#  ?crime1
 
 ## ---- tidy = TRUE--------------------------------------------------------
 restricted_model <- lm(narr86 ~ pcnv + ptime86 + qemp86, data = crime1)
@@ -48,12 +54,10 @@ restricted_model_u <- restricted_model$residuals
 
 ## ---- tidy = TRUE--------------------------------------------------------
 LM_u_model <- lm(restricted_model_u ~ pcnv + ptime86 + qemp86 + avgsen + tottime, data = crime1)
-
 summary(LM_u_model)$r.square
 
 ## ------------------------------------------------------------------------
 LM_test <- nobs(LM_u_model) * 0.0015
-
 LM_test
 
 ## ------------------------------------------------------------------------
@@ -62,8 +66,9 @@ qchisq(1 - 0.10, 2)
 ## ------------------------------------------------------------------------
 1-pchisq(LM_test, 2)
 
-## ------------------------------------------------------------------------
-data(hrpice2)
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("hprice2")
+#  ?hprice2
 
 ## ---- tidy = TRUE--------------------------------------------------------
 housing_standard <- lm(scale(price)~0+scale(nox)+scale(crime)+scale(rooms)+scale(dist) + scale(stratio), data = hprice2)
@@ -77,6 +82,9 @@ housing_interactive <- lm(lprice ~ lnox + log(dist) + rooms+I(rooms^2) + stratio
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(housing_standard, housing_interactive, single.row = TRUE, header = FALSE)
 
+## ------------------------------------------------------------------------
+data("hprice1")
+
 ## ---- eval=FALSE---------------------------------------------------------
 #  ?hprice1
 
@@ -86,9 +94,11 @@ housing_qualitative <- lm(lprice ~ llotsize + lsqrft + bdrms + colonial, data = 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(housing_qualitative,  single.row = TRUE, header = FALSE)
 
-## ------------------------------------------------------------------------
-data("gpa1")
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("gpa1")
+#  ?gpa1
 
+## ------------------------------------------------------------------------
 gpa1$parcoll <- as.integer(gpa1$fathcoll==1 | gpa1$mothcoll)
 
 ## ------------------------------------------------------------------------
@@ -102,9 +112,11 @@ GPA_WLS <- lm(PC ~ hsGPA + ACT + parcoll, data = gpa1, weights = 1/weights)
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(GPA_OLS, GPA_WLS,  single.row = TRUE, header = FALSE)
 
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("rdchem")
+#  ?rdchem
+
 ## ------------------------------------------------------------------------
-data(rdchem)
- 
 all_rdchem <- lm(rdintens ~ sales + profmarg, data = rdchem)
 
 ## ---- tidy=TRUE----------------------------------------------------------
@@ -121,21 +133,25 @@ smallest_rdchem <- lm(rdintens ~ sales + profmarg, data = rdchem,
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(all_rdchem, smallest_rdchem,  single.row = TRUE, header = FALSE)
 
-## ------------------------------------------------------------------------
-data("intdef")
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("intdef")
+#  ?intdef
 
+## ------------------------------------------------------------------------
 tbill_model <- lm(i3 ~ inf + def, data = intdef)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(tbill_model, single.row = TRUE, header = FALSE)
 
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("barium")
+#  ?barium
+
 ## ---- tidy=TRUE----------------------------------------------------------
-data("barium")
 barium_imports <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
 
 ## ---- tidy=TRUE----------------------------------------------------------
 barium_seasonal <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6 + feb + mar + apr + may + jun + jul + aug + sep + oct + nov + dec, data = barium)
-
 barium_anova <- anova(barium_imports, barium_seasonal)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
@@ -143,9 +159,11 @@ stargazer(barium_imports, barium_seasonal,  single.row = TRUE, header = FALSE)
 
 stargazer(barium_anova,  single.row = TRUE, header = FALSE)
 
-## ------------------------------------------------------------------------
-data("earns")
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("earns")
+#  ?earns
 
+## ------------------------------------------------------------------------
 wage_time <- lm(lhrwage ~ loutphr + t, data = earns)
 
 ## ------------------------------------------------------------------------
@@ -165,14 +183,15 @@ barium_prais_winsten <- prais.winsten(lchnimp ~ lchempi + lgas + lrtwex + befile
 barium_model
 barium_prais_winsten
 
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("nyse")
+#  ?nyse
+
 ## ------------------------------------------------------------------------
-data("nyse")
- 
 return_AR1 <-lm(return ~ return_1, data = nyse)
 
 ## ------------------------------------------------------------------------
 return_mu <- residuals(return_AR1)
-
 mu2_hat_model <- lm(return_mu^2 ~ return_1, data = return_AR1$model)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
@@ -180,17 +199,17 @@ stargazer(return_AR1, mu2_hat_model,  single.row = TRUE, header = FALSE)
 
 ## ------------------------------------------------------------------------
 mu2_hat  <- return_mu[-1]^2
-
 mu2_hat_1 <- return_mu[-NROW(return_mu)]^2
-
 arch_model <- lm(mu2_hat ~ mu2_hat_1)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(arch_model, single.row = TRUE, header = FALSE)
 
-## ------------------------------------------------------------------------
-data("traffic1")
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("traffic1")
+#  ?traffic1
 
+## ------------------------------------------------------------------------
 DD_model <- lm(cdthrte ~ copen + cadmn, data = traffic1)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
@@ -198,17 +217,18 @@ stargazer(DD_model,  single.row = TRUE, header = FALSE)
 
 ## ---- tidy=TRUE----------------------------------------------------------
 library(plm)
-
 data("jtrain")
-
 scrap_panel <- plm(lscrap ~ d88 + d89 + grant + grant_1, data = jtrain,
             index = c('fcode','year'), model = 'within', effect ='individual')
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(scrap_panel,  single.row = TRUE, header = FALSE)
 
-## ---- message=FALSE------------------------------------------------------
-data("mroz")
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("mroz")
+#  ?mroz
+
+## ------------------------------------------------------------------------
 wage_educ_model <- lm(lwage ~ educ, data = mroz)
 
 ## ------------------------------------------------------------------------
@@ -221,14 +241,15 @@ wage_educ_IV <- ivreg(lwage ~ educ | fatheduc, data = mroz)
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(wage_educ_model, fatheduc_model, wage_educ_IV, single.row = TRUE, header = FALSE)
 
-## ---- warning=FALSE------------------------------------------------------
-data("wage2")
- 
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("wage2")
+#  ?wage2
+
+## ------------------------------------------------------------------------
 educ_sibs_model <- lm(educ ~ sibs, data = wage2)
 
 ## ---- message=FALSE------------------------------------------------------
 library("AER")
-
 educ_sibs_IV <- ivreg(lwage ~ educ | sibs, data = wage2)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
@@ -241,14 +262,15 @@ wage_educ_exper_IV <- ivreg(lwage ~ educ + exper + expersq | exper + expersq + m
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE, echo=FALSE----
 stargazer(wage_educ_exper_IV,  single.row = TRUE, header = FALSE)
 
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("openness")
+#  ?openness
+
 ## ------------------------------------------------------------------------
-data("openness")
- 
 open_model <-lm(open ~ lpcinc + lland, data = openness)
 
 ## ------------------------------------------------------------------------
 library(AER)
-
 inflation_IV <- ivreg(inf ~ open + lpcinc | lpcinc + lland, data = openness)
 
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
@@ -269,8 +291,9 @@ econ_crim_poisson <- glm(formula, data = crime1, family = poisson)
 ## ---- results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE----------
 stargazer(econ_crime_model, econ_crim_poisson,  single.row = TRUE, header = FALSE)
 
-## ------------------------------------------------------------------------
-data("phillips")
+## ---- message=FALSE, eval=FALSE------------------------------------------
+#  data("phillips")
+#  ?phillips
 
 ## ------------------------------------------------------------------------
 unem_AR1 <- lm(unem ~ unem_1, data = phillips, subset = (year <= 1996))

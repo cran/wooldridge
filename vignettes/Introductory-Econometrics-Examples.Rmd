@@ -1,31 +1,27 @@
 ---
-title: "wooldridge-vignette"
+title: "Introductory Econometrics Examples"
 author: "Justin M Shea"
 date: ' '
 output:
-  pdf_document:
-    toc: yes
-  rmarkdown::html_document:
+    rmarkdown::html_vignette:
     toc: yes
 vignette: >
-  %\VignetteIndexEntry{wooldridge-vignette}  
+  %\VignetteIndexEntry{Introductory Econometrics Examples}  
   %\VignetteEngine{knitr::rmarkdown}  
   %\VignetteEncoding{UTF-8}
-
-
 ---
 
 \newpage
 
 ## Introduction
 
-This vignette contains examples from every chapter of _Introductory Econometrics: A Modern Approach_ by Jeffrey M. Wooldridge. Each example illustrates how to load data, build econometric models, and compute estimates with **R**.
+This vignette contains examples from every chapter of _Introductory Econometrics: A Modern Approach, 6e_ by Jeffrey M. Wooldridge. Each example illustrates how to load data, build econometric models, and compute estimates with **R**.
 
-Economics students new to both econometrics and **R** may find the introduction to both a bit challenging. In particular, the process of loading and preparing data prior to building one's first econometric model can present challenges. The `wooldridge` data package aims to lighten this task. It contains 105 data sets from _Introductory Econometrics: A Modern Approach_, and will load any set by typing its name into the `data()` function.
+Students new to both econometrics and **R** may find the introduction to both a bit challenging. In particular, the process of loading and preparing data prior to building one's first econometric model can present challenges. The `wooldridge` data package aims to lighten this task. It contains 111 data sets from _Introductory Econometrics: A Modern Approach, 6e_, which can be loaded with a simple call to the `data()` function.
 
-While the course companion site also provides publicly available data sets for Eviews, Excel, MiniTab, and Stata commercial software, **R** is the open source option. Furthermore, using **R** while building a foundation in econometrics, can become the first step in a student's journey toward using the most innovative new methods in statistical computing for handling larger, more modern data sets.
+While the course companion site provides publicly available data sets for Eviews, Excel, MiniTab, and Stata commercial software, **R** is the open source option. Furthermore, using **R** while building a foundation in econometric modeling introduces one to software tools capable of scaling with the demands of modern methods in statistical computing.
 
-In addition, please visit the **Appendix** for sources on using R for econometrics. For example, an excellent reference is [_"Using R for Introductory Econometrics"_ by Florian Hess](http://www.urfie.net/index.html), written to compliment _Introductory Econometrics: A Modern Approach_. The full text can be viewed on the book website.
+In addition, the **Appendix** cites additional sources about using R for econometrics. 
 
 Now, install and load the `wooldridge` package and lets get started.
 
@@ -39,6 +35,7 @@ library(wooldridge)
 
 ```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 library(stargazer)
+library(knitr)
 ```
 
 \newpage
@@ -66,8 +63,8 @@ log_wage_model <- lm(lwage ~ educ, data = wage1)
 
 Print the results. I'm using the `stargazer` package to print the model results in a clean and easy to read format. See the bibliography for more information.
 
-```{r, results = 'asis', warning=FALSE, message=FALSE}
-stargazer(log_wage_model, single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE}
+stargazer(log_wage_model, type = "html", single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -86,8 +83,8 @@ hourly_wage_model <- lm(lwage ~ educ + exper + tenure, data = wage1)
 
 Print the estimated model coefficients:
 
-```{r, results = 'asis', warning=FALSE, message=FALSE}
-stargazer(hourly_wage_model,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE}
+stargazer(type = "html",hourly_wage_model,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -131,8 +128,8 @@ linear_model <- lm(lscrap ~ hrsemp + lsales + lemploy, data = jtrain_1987_nonuni
 
 Finally, print the complete summary statistic diagnostics of the model.
 
-```{r, results = 'asis', warning=FALSE, message=FALSE}
-stargazer(linear_model,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE}
+stargazer(type = "html",linear_model,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -241,8 +238,8 @@ Estimate the coefficient with the usual `lm` regression model but this time, sta
 housing_standard <- lm(scale(price)~0+scale(nox)+scale(crime)+scale(rooms)+scale(dist) + scale(stratio), data = hprice2)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE}
-stargazer(housing_standard,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE}
+stargazer(type = "html",housing_standard,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -259,8 +256,8 @@ housing_interactive <- lm(lprice ~ lnox + log(dist) + rooms+I(rooms^2) + stratio
 
 Compare the results with the model from `example 6.1`.
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(housing_standard, housing_interactive, single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",housing_standard, housing_interactive, single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -290,8 +287,8 @@ Estimate the coefficients of the above linear model on the `hprice` data set.
 housing_qualitative <- lm(lprice ~ llotsize + lsqrft + bdrms + colonial, data = hprice1)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(housing_qualitative,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",housing_qualitative,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -325,8 +322,8 @@ GPA_WLS <- lm(PC ~ hsGPA + ACT + parcoll, data = gpa1, weights = 1/weights)
 
 Compare the OLS and WLS model in the table below:
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(GPA_OLS, GPA_WLS,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",GPA_OLS, GPA_WLS,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -368,8 +365,8 @@ smallest_rdchem <- lm(rdintens ~ sales + profmarg, data = rdchem,
 
 The table below compares the results of both models side by side. By removing the outlier firm, $sales$ become a more significant determination of R&D expenditures.
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(all_rdchem, smallest_rdchem,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",all_rdchem, smallest_rdchem,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -389,8 +386,8 @@ data("intdef")
 tbill_model <- lm(i3 ~ inf + def, data = intdef)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(tbill_model, single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",tbill_model, single.row = TRUE, header = FALSE)
 ```
 
 
@@ -413,10 +410,10 @@ barium_seasonal <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + af
 barium_anova <- anova(barium_imports, barium_seasonal)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(barium_imports, barium_seasonal,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",barium_imports, barium_seasonal,  single.row = TRUE, header = FALSE)
 
-stargazer(barium_anova,  single.row = TRUE, header = FALSE)
+stargazer(type = "html",barium_anova,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -441,8 +438,8 @@ wage_time <- lm(lhrwage ~ loutphr + t, data = earns)
 wage_diff <- lm(diff(lhrwage) ~ diff(loutphr), data = earns)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(wage_time, wage_diff,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",wage_time, wage_diff,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -455,13 +452,21 @@ stargazer(wage_time, wage_diff,  single.row = TRUE, header = FALSE)
 ```{r, tidy=TRUE}
 data("barium")
 barium_model <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
-# Load the `prais` package, use the `prais.winsten` function to estimate.
+```
+
+
+Load the `prais` package, use the `prais.winsten` function to estimate.
+
+```{r, tidy=TRUE}
 library(prais)
 barium_prais_winsten <- prais.winsten(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
 ```
 
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html", barium_model, single.row = TRUE, header = FALSE)
+```
+
 ```{r}
-barium_model
 barium_prais_winsten
 ```
 
@@ -489,8 +494,8 @@ $$\hat{\mu^2_t} = \beta_0 + \beta_1return_{t-1} + residual_t$$
 return_mu <- residuals(return_AR1)
 mu2_hat_model <- lm(return_mu^2 ~ return_1, data = return_AR1$model)
 ```
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(return_AR1, mu2_hat_model,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",return_AR1, mu2_hat_model,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -509,8 +514,8 @@ mu2_hat_1 <- return_mu[-NROW(return_mu)]^2
 arch_model <- lm(mu2_hat ~ mu2_hat_1)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(arch_model, single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",arch_model, single.row = TRUE, header = FALSE)
 ```
 
 
@@ -531,8 +536,8 @@ data("traffic1")
 DD_model <- lm(cdthrte ~ copen + cadmn, data = traffic1)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(DD_model,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",DD_model,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -543,15 +548,15 @@ stargazer(DD_model,  single.row = TRUE, header = FALSE)
 
 In this section, we will estimate a linear panel modeg using the `plm` function from the `plm: Linear Models for Panel Data` package. See the bibliography for more information.
 
-```{r, tidy=TRUE}
+```{r, tidy=TRUE, warning=FALSE, message=FALSE}
 library(plm)
 data("jtrain")
 scrap_panel <- plm(lscrap ~ d88 + d89 + grant + grant_1, data = jtrain,
             index = c('fcode','year'), model = 'within', effect ='individual')
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(scrap_panel,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",scrap_panel,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -588,8 +593,8 @@ library("AER")
 wage_educ_IV <- ivreg(lwage ~ educ | fatheduc, data = mroz)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(wage_educ_model, fatheduc_model, wage_educ_IV, single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",wage_educ_model, fatheduc_model, wage_educ_IV, single.row = TRUE, header = FALSE)
 ```
 
 
@@ -618,8 +623,8 @@ library("AER")
 educ_sibs_IV <- ivreg(lwage ~ educ | sibs, data = wage2)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(educ_sibs_model, educ_sibs_IV, wage_educ_IV,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",educ_sibs_model, educ_sibs_IV, wage_educ_IV,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -636,8 +641,8 @@ data("mroz")
 wage_educ_exper_IV <- ivreg(lwage ~ educ + exper + expersq | exper + expersq + motheduc + fatheduc, data = mroz)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE, echo=FALSE}
-stargazer(wage_educ_exper_IV,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, echo=FALSE}
+stargazer(type = "html",wage_educ_exper_IV,  single.row = TRUE, header = FALSE)
 ```
 
 \newpage
@@ -672,8 +677,8 @@ library(AER)
 inflation_IV <- ivreg(inf ~ open + lpcinc | lpcinc + lland, data = openness)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(open_model, inflation_IV,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",open_model, inflation_IV,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -708,8 +713,8 @@ econ_crim_poisson <- glm(formula, data = crime1, family = poisson)
 
 Use the `stargazer` package to easily compare diagnostic tables of both models.
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, tidy=TRUE}
-stargazer(econ_crime_model, econ_crim_poisson,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, tidy=TRUE}
+stargazer(type = "html",econ_crime_model, econ_crim_poisson,  single.row = TRUE, header = FALSE)
 ```
 
 
@@ -731,22 +736,62 @@ $$\widehat{unemp_t} = \beta_0 + \beta_1unem_{t-1}$$
 Estimate the linear model in the usual way and note the use of the `subset` argument to define data equal to and before the year 1996.
 
 ```{r}
-unem_AR1 <- lm(unem ~ unem_1, data = phillips, subset = (year <= 1996))
+phillips_train <- subset(phillips, year <= 1996)
+
+unem_AR1 <- lm(unem ~ unem_1, data = phillips_train)
 ```
 
 $$\widehat{unemp_t} = \beta_0 + \beta_1unem_{t-1} + \beta_2inf_{t-1}$$
 
 ```{r}
-unem_inf_VAR1 <- lm(unem ~ unem_1 + inf_1, data = phillips, subset = (year <= 1996))
+unem_inf_VAR1 <- lm(unem ~ unem_1 + inf_1, data = phillips_train)
 ```
 
-```{r, results = 'asis', warning=FALSE, message=FALSE, echo=FALSE}
-stargazer(unem_AR1, unem_inf_VAR1,  single.row = TRUE, header = FALSE)
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE}
+stargazer(type = "html",unem_AR1, unem_inf_VAR1,  single.row = TRUE, header = FALSE)
 ```
+
+Now, use the `subset` argument to create our testing data set containing observation after 1996.
+Next, pass the both the model object and the test set to the `predict` function for both models.
+Finally, `cbind` or "column bind" both forecasts as well as the year and unemployment rate of the test set.
+
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+phillips_test <- subset(phillips, year >= 1997)
+
+AR1_forecast <- predict.lm(unem_AR1, newdata = phillips_test)
+VAR1_forecast <- predict.lm(unem_inf_VAR1, newdata = phillips_test)
+
+kable(cbind(phillips_test[ ,c("year", "unem")], AR1_forecast, VAR1_forecast))
+```
+
 
 
 \newpage
 
+# Appendix
+
+
+###Using R for Introductory Econometrics
+
+This is an excellent open source complimentary text to "Introductory Econometrics" by Jeffrey M. Wooldridge and should be your number one resource. This excerpt from the book's website:
+
+>  This book introduces the popular, powerful and free programming language and software package R with a focus on the implementation of standard tools and methods used in econometrics. Unlike other books on similar topics, it does not attempt to provide a self-contained discussion of econometric models and methods. Instead, it builds on the excellent and popular textbook "Introductory Econometrics" by Jeffrey M. Wooldridge.
+
+Hess, Florian. _Using R for Introductory Econometrics_. ISBN: 978-1-523-28513-6, CreateSpace Independent Publishing Platform, 2016, Dusseldorf, Germany. 
+
+[url: http://www.urfie.net/](http://www.urfie.net/).
+
+
+###Applied Econometrics with R
+
+From the publisher's website:
+
+>    This is the first book on applied econometrics using the R system for statistical computing and graphics. It presents hands-on examples for a wide range of econometric models, from classical linear regression models for cross-section, time series or panel data and the common non-linear models of microeconometrics such as logit, probit and tobit models, to recent semiparametric extensions. In addition, it provides a chapter on programming, including simulations, optimization, and an introduction to R tools enabling reproducible econometric research. An R package accompanying this book, AER, is available from the Comprehensive R Archive Network (CRAN) at https://CRAN.R-project.org/package=AER.
+
+Kleiber, Christian  and Achim Zeileis. _Applied Econometrics with R_. ISBN 978-0-387-77316-2,
+Springer-Verlag, 2008, New York. [https://www.springer.com/us/book/9780387773162](https://www.springer.com/us/book/9780387773162)
+
+\newpage
 
 ## Bibliography
 
@@ -763,7 +808,7 @@ Springer-Verlag. ISBN 978-0-387-77316-2. URL https://CRAN.R-project.org/package=
 Franz Mohr (2015). _prais: Prais-Winsten Estimation Procedure for AR(1) Serial Correlation_. R package version 0.1.1. https://CRAN.R-project.org/package=prais
 
 
-R Core Team (2017). _R: A language and environment for statistical computing_. 
+R Core Team (2018). _R: A language and environment for statistical computing_. 
 R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 
@@ -773,38 +818,14 @@ Hadley Wickham and Winston Chang (2016). _devtools: Tools to Make Developing R P
 Hadley Wickham. _testthat: Get Started with Testing_. R package version 1.0.2. https://CRAN.R-project.org/package=testthat
 
 
-Jeffrey M. Wooldridge (2013). _Introductory Econometrics: A Modern Approach_. 
+Jeffrey M. Wooldridge (2016). _Introductory Econometrics: A Modern Approach_. 
 Mason, Ohio :South-Western Cengage Learning.
 
 
-Yihui Xie (2017). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.16. https://CRAN.R-project.org/package=knitr
+Yihui Xie (2018). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.16. https://CRAN.R-project.org/package=knitr
 
+ 
 
-\newpage
-
-
-# Appendix
-
-
-###**Using R for Introductory Econometrics**
-
-This is an excellent open source complimentary text to "Introductory Econometrics" by Jeffrey M. Wooldridge and should be your number one resource. This excerpt from the book's website:
-
->  This book introduces the popular, powerful and free programming language and software package R with a focus on the implementation of standard tools and methods used in econometrics. Unlike other books on similar topics, it does not attempt to provide a self-contained discussion of econometric models and methods. Instead, it builds on the excellent and popular textbook "Introductory Econometrics" by Jeffrey M. Wooldridge.
-
-Hess, Florian. _Using R for Introductory Econometrics_. ISBN: 978-1-523-28513-6, CreateSpace Independent Publishing Platform, 2016, Dusseldorf, Germany. 
-
-[url: https://urfie.net](https://urfie.net).
-
-
-###**Applied Econometrics with R**
-
-From the publisher's website:
-
->    This is the first book on applied econometrics using the R system for statistical computing and graphics. It presents hands-on examples for a wide range of econometric models, from classical linear regression models for cross-section, time series or panel data and the common non-linear models of microeconometrics such as logit, probit and tobit models, to recent semiparametric extensions. In addition, it provides a chapter on programming, including simulations, optimization, and an introduction to R tools enabling reproducible econometric research. An R package accompanying this book, AER, is available from the Comprehensive R Archive Network (CRAN) at http://CRAN.R-project.org/package=AER.
-
-Kleiber, Christian  and Achim Zeileis. _Applied Econometrics with R_. ISBN 978-0-387-77316-2,
-Springer-Verlag, 2008, New York. [http://www.springer.com/us/book/9780387773162](http://www.springer.com/us/book/9780387773162)
 
 
 

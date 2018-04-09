@@ -3,37 +3,73 @@ title: "NEWS"
 output: github_document
 ---
 
+# wooldridge 1.3.0
+
+Added six additional data sets and documentation for the most recent edition,
+"Introductory Econometrics: A Modern Approach, 6th edition" (Wooldridge 2016, 
+ISBN-13: 978-1-305-27010-7).
+
+Further compression of data sets by writing a function to delete unnecessary
+attributes attached to each data.frame. Excess attributes were assigned to
+each data.frame during the import from Stata .dta files. In addition,
+the row.names attribute was saved as a character so I converted each one
+to integer, which reduced the size of each data set and the package as a whole.
+
+# wooldridge 1.2.1
+
+### NEW DOCUMENTATION
+
+Created a Github pages site for the package, eliminating the need for generating a pdf vignette.
+
+
+### DESCRIPTION
+
+Relaxed dependency from `R (>= 3.4.0)` to `R (>= 3.0.0)` as we no longer need to be concerned about build fails when kniting the .pdf vignette. Minor content edits to Description section.
+
+
+### README.md
+
+Added downloads by month badge. Updates reflecting changes above.
+
+
+### Updates to vignette
+
+Name change to "Introductory Econometrics Examples".
+In addition, I updated stargazer output to `type = "html"`.
+Finally, added forecast content to the chapter 18 example.
+
+### tests
+
+Added two additional tests on build. One tests checks if 105 data sets are present. The other tests if each one loads correctly and is of class `data.frame`.
+
+
 # wooldridge 1.2.0
 
-## Integrate Descriptions of data sets
+### NEW DOCUMENTATION
 
-In previous versions, the documentation mainly contained the column variable names to all data sets, which is all that is available on the text book companion site. After scouring the internet, I acquired a lone .pdf, listing descriptions of original sources as well as the page numbers on which the data set appears, for 101 of the 105 data sets! In addition, most of it appears to be written by Wooldridge himself and contains interesting commentary and features of the data set. After wrangling the .pdf into a proper data.frame, I programmatically extracted the useful elements and wove them into the roxygen2 style .R files.
+In previous versions, the documentation merely contained column variable names and dimensions of each data set. This version has been updated to include a plethora of additional information for 101 data sets. Updates include descriptions for each column variable, the original sources Wooldridge used to acquire each data set, detailed notes describing suggested analysis approaches, and page numbers for each data set located in the text. The source of this information comes from a .pdf file titled the "DATA SET HANDBOOK" by Jeffrey M. Wooldridge. I wrote a script which iteratively extracted its contents and inserted them into roxygen2 style .R files for each data set.
 
-## Updates to vignette
+### Updates to vignette
 
-Fixed chapter 6 misspelling of the data set called within the load function. The example still worked due to lazy loading of data.
+Fixed an error in chapter 6, misspelling the name of the data set called within the data function. The model example still worked due to lazy loading of data.
 
-While I have an old affinity for Farnsworth document, it was pointed out to me that it contains some outdated information. I removed it as it might do new learners more harm than good. In its place, I added a citation for the book, Applied Econometrics with R. While I already cited the package, it should go in the Appendix as a resource to expand knowledge beyond the text.
+While I have an old affinity for the Farnsworth Econometrics document, it contains some outdated information. I removed it as it might do new learners more harm than good. In its place I added a citation for the book, "Applied Econometrics with R". While I previously cited the AER package, the book should go in the Appendix as a resource for those considering expanding their knowledge beyond this introductory text.
 
 The newly acquired original description of data sets have also been added for every example, with the syntax for calling documentation on each one.
 
-## Updates to README.md 
+### Updates to README.md 
 
 Added instructions to access dev branch, which I pushed to Github.
 
 # wooldridge 1.1.0
 
-## Updates to vignette
+### Updates to vignette
 
 I removed written descriptions of the example problems, putting more emphasis on viewing clean code. Short notes point to what function arguments are used or to various R packages. For descriptions of the examples and rational behind each problem, students should refer to their textbook as the content offered by Wooldridge is quite clear.
 
 A bibliography section has been added, including package citations and their authors.
 
 An Appendix has been added, pointing readers to a few excellent sources for computing Econometric models with R. These are "Econometrics in R" by Grant Farnsworth and "Using R for Introductory Econometrics" by Florian Hess.
-
-## Updates to README.md 
-
-Improved readability.
 
 
 # wooldridge 1.0.0

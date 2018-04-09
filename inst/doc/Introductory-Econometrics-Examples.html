@@ -1,0 +1,4030 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Justin M Shea" />
+
+
+<title>Introductory Econometrics Examples</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introductory Econometrics Examples</h1>
+<h4 class="author"><em>Justin M Shea</em></h4>
+
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This vignette contains examples from every chapter of <em>Introductory Econometrics: A Modern Approach, 6e</em> by Jeffrey M. Wooldridge. Each example illustrates how to load data, build econometric models, and compute estimates with <strong>R</strong>.</p>
+<p>Students new to both econometrics and <strong>R</strong> may find the introduction to both a bit challenging. In particular, the process of loading and preparing data prior to building one’s first econometric model can present challenges. The <code>wooldridge</code> data package aims to lighten this task. It contains 111 data sets from <em>Introductory Econometrics: A Modern Approach, 6e</em>, which can be loaded with a simple call to the <code>data()</code> function.</p>
+<p>While the course companion site provides publicly available data sets for Eviews, Excel, MiniTab, and Stata commercial software, <strong>R</strong> is the open source option. Furthermore, using <strong>R</strong> while building a foundation in econometric modeling introduces one to software tools capable of scaling with the demands of modern methods in statistical computing.</p>
+<p>In addition, the <strong>Appendix</strong> cites additional sources about using R for econometrics.</p>
+<p>Now, install and load the <code>wooldridge</code> package and lets get started.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;wooldridge&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wooldridge)</code></pre></div>
+
+</div>
+<div id="chapter-2-the-simple-regression-model" class="section level2">
+<h2>Chapter 2: The Simple Regression Model</h2>
+<p><strong><code>Example 2.10:</code> A Log Wage Equation</strong></p>
+<p><span class="math display">\[\widehat{log(wage)} = \beta_0 + \beta_1educ\]</span></p>
+<p>Load the <code>wage1</code> data and check out the documentation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;wage1&quot;</span>)
+?wage1</code></pre></div>
+<p>These are data from the 1976 Current Population Survey, collected by Henry Farber when he and Wooldridge were colleagues at MIT in 1988.</p>
+<p>Estimate a linear relationship between the <em>log of wage</em> and <em>education</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log_wage_model &lt;-<span class="st"> </span><span class="kw">lm</span>(lwage <span class="op">~</span><span class="st"> </span>educ, <span class="dt">data =</span> wage1)</code></pre></div>
+<p>Print the results. I’m using the <code>stargazer</code> package to print the model results in a clean and easy to read format. See the bibliography for more information.</p>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lwage
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+0.083<sup>***</sup> (0.008)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.584<sup>***</sup> (0.097)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+526
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.186
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.184
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.480 (df = 524)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+119.582<sup>***</sup> (df = 1; 524)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-3-multiple-regression-analysis-estimation" class="section level2">
+<h2>Chapter 3: Multiple Regression Analysis: Estimation</h2>
+<p><strong><code>Example 3.2:</code> Hourly Wage Equation</strong></p>
+<p><span class="math display">\[\widehat{log(wage)} = \beta_0 + \beta_1educ + \beta_3exper + \beta_4tenure\]</span></p>
+<p>Estimate the model regressing <em>education</em>, <em>experience</em>, and <em>tenure</em> against <em>log(wage)</em>. The <code>wage1</code> data should still be in your working environment.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hourly_wage_model &lt;-<span class="st"> </span><span class="kw">lm</span>(lwage <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>exper <span class="op">+</span><span class="st"> </span>tenure, <span class="dt">data =</span> wage1)</code></pre></div>
+<p>Print the estimated model coefficients:</p>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lwage
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+0.092<sup>***</sup> (0.007)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+exper
+</td>
+<td>
+0.004<sup>**</sup> (0.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+tenure
+</td>
+<td>
+0.022<sup>***</sup> (0.003)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.284<sup>***</sup> (0.104)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+526
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.316
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.312
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.441 (df = 522)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+80.391<sup>***</sup> (df = 3; 522)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-4-multiple-regression-analysis-inference" class="section level2">
+<h2>Chapter 4: Multiple Regression Analysis: Inference</h2>
+<p><strong><code>Example 4.7</code> Effect of Job Training on Firm Scrap Rates</strong></p>
+<p>Load the <code>jtrain</code> data set and if you are using R Studio, <code>View</code> the data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;jtrain&quot;</span>)</code></pre></div>
+<p>From H. Holzer, R. Block, M. Cheatham, and J. Knott (1993), <em>Are Training Subsidies Effective? The Michigan Experience</em>, Industrial and Labor Relations Review 46, 625-636. The authors kindly provided the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?jtrain
+<span class="kw">View</span>(jtrain)</code></pre></div>
+<p>Create a logical index, identifying which observations occur in 1987 and are non-union.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">index &lt;-<span class="st"> </span>jtrain<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">&amp;</span><span class="st"> </span>jtrain<span class="op">$</span>union <span class="op">==</span><span class="st"> </span><span class="dv">0</span></code></pre></div>
+<p>Next, subset the jtrain data by the new index. This returns a data.frame of <code>jtrain</code> data of non-union firms for the year 1987.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jtrain_1987_nonunion &lt;-<span class="st"> </span>jtrain[index, ]</code></pre></div>
+<p>Now create the linear model regressing <code>hrsemp</code>(total hours training/total employees trained), the <code>lsales</code>(log of annual sales), and <code>lemploy</code>(the log of the number of the employees), against <code>lscrap</code>(the log of the scrape rate).</p>
+<p><span class="math display">\[lscrap = \alpha + \beta_1 hrsemp + \beta_2 lsales + \beta_3 lemploy\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">linear_model &lt;-<span class="st"> </span><span class="kw">lm</span>(lscrap <span class="op">~</span><span class="st"> </span>hrsemp <span class="op">+</span><span class="st"> </span>lsales <span class="op">+</span><span class="st"> </span>lemploy, <span class="dt">data =</span> jtrain_1987_nonunion)</code></pre></div>
+<p>Finally, print the complete summary statistic diagnostics of the model.</p>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lscrap
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+hrsemp
+</td>
+<td>
+-0.029 (0.023)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lsales
+</td>
+<td>
+-0.962<sup>**</sup> (0.453)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lemploy
+</td>
+<td>
+0.761<sup>*</sup> (0.407)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+12.458<sup>**</sup> (5.687)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.262
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.174
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1.376 (df = 25)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+2.965<sup>*</sup> (df = 3; 25)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-5-multiple-regression-analysis-ols-asymptotics" class="section level2">
+<h2>Chapter 5: Multiple Regression Analysis: OLS Asymptotics</h2>
+<p><strong><code>Example 5.3:</code> Economic Model of Crime</strong></p>
+<p>From J. Grogger (1991), <em>Certainty vs. Severity of Punishment</em>, Economic Inquiry 29, 297-309. Professor Grogger kindly provided a subset of the data he used in his article.</p>
+<p><span class="math display">\[narr86 = \beta_0 + \beta_1pcnv + \beta_2avgsen + \beta_3tottime + \beta_4ptime86 + \beta_5qemp86 + \mu\]</span></p>
+<p><span class="math inline">\(narr86:\)</span> number of times arrested, 1986.<br />
+<span class="math inline">\(pcnv:\)</span> proportion of prior arrests leading to convictions.<br />
+<span class="math inline">\(avgsen:\)</span> average sentence served, length in months.<br />
+<span class="math inline">\(tottime:\)</span> time in prison since reaching the age of 18, length in months.<br />
+<span class="math inline">\(ptime86:\)</span> months in prison during 1986.<br />
+<span class="math inline">\(qemp86:\)</span> quarters employed, 1986.</p>
+<p>Load the <code>crime1</code> data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;crime1&quot;</span>)
+?crime1</code></pre></div>
+<p>Estimate the model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">restricted_model &lt;-<span class="st"> </span><span class="kw">lm</span>(narr86 <span class="op">~</span><span class="st"> </span>pcnv <span class="op">+</span><span class="st"> </span>ptime86 <span class="op">+</span><span class="st"> </span>qemp86, <span class="dt">data =</span> crime1)</code></pre></div>
+<p>Create a new variable <code>restricted_model_u</code> containing the residuals <span class="math inline">\(\tilde{\mu}\)</span> from the above regression.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">restricted_model_u &lt;-<span class="st"> </span>restricted_model<span class="op">$</span>residuals</code></pre></div>
+<p>Next, regress <code>pcnv, ptime86, qemp86, avgsen</code>, and <code>tottime</code>, against the residuals <span class="math inline">\(\tilde{\mu}\)</span> saved in <code>restricted_model_u</code>.</p>
+<p><span class="math display">\[\tilde{\mu} = \beta_1pcnv + \beta_2avgsen + \beta_3tottime + \beta_4ptime86 + \beta_5qemp86\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LM_u_model &lt;-<span class="st"> </span><span class="kw">lm</span>(restricted_model_u <span class="op">~</span><span class="st"> </span>pcnv <span class="op">+</span><span class="st"> </span>ptime86 <span class="op">+</span><span class="st"> </span>qemp86 <span class="op">+</span><span class="st"> </span>avgsen <span class="op">+</span><span class="st"> </span>tottime, 
+    <span class="dt">data =</span> crime1)
+<span class="kw">summary</span>(LM_u_model)<span class="op">$</span>r.square</code></pre></div>
+<pre><code>## [1] 0.001493846</code></pre>
+<p><span class="math display">\[LM = 2,725(0.0015)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LM_test &lt;-<span class="st"> </span><span class="kw">nobs</span>(LM_u_model) <span class="op">*</span><span class="st"> </span><span class="fl">0.0015</span>
+LM_test</code></pre></div>
+<pre><code>## [1] 4.0875</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qchisq</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.10</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 4.60517</code></pre>
+<p>The <em>p</em>-value is: <span class="math display">\[P(X^2_{2} &gt; 4.09) \approx 0.129\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(LM_test, <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.129542</code></pre>
+
+</div>
+<div id="chapter-6-multiple-regression-further-issues" class="section level2">
+<h2>Chapter 6: Multiple Regression: Further Issues</h2>
+<p><strong><code>Example 6.1:</code> Effects of Pollution on Housing Prices, standardized.</strong></p>
+<p><span class="math display">\[price = \beta_0 + \beta_1nox + \beta_2crime + \beta_3rooms + \beta_4dist + \beta_5stratio + \mu\]</span></p>
+<p><span class="math inline">\(price\)</span>: median housing price.</p>
+<p><span class="math inline">\(nox\)</span>: Nitrous Oxide concentration; parts per million.</p>
+<p><span class="math inline">\(crime\)</span>: number of reported crimes per capita.</p>
+<p><span class="math inline">\(rooms\)</span>: average number of rooms in houses in the community.</p>
+<p><span class="math inline">\(dist\)</span>: weighted distance of the community to 5 employment centers.</p>
+<p><span class="math inline">\(stratio\)</span>: average student-teacher ratio of schools in the community.</p>
+<p><span class="math display">\[\widehat{zprice} = \beta_1znox + \beta_2zcrime + \beta_3zrooms + \beta_4zdist + \beta_5zstratio\]</span></p>
+<p>Load the <code>hprice2</code> data and view the documentation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;hprice2&quot;</span>)
+?hprice2</code></pre></div>
+<p>Data from <em>Hedonic Housing Prices and the Demand for Clean Air</em>, by Harrison, D. and D.L.Rubinfeld, Journal of Environmental Economics and Management 5, 81-102. Diego Garcia, a former Ph.D. student in economics at MIT, kindly provided these data, which he obtained from the book Regression Diagnostics: Identifying Influential Data and Sources of Collinearity, by D.A. Belsey, E. Kuh, and R. Welsch, 1990. New York: Wiley.</p>
+<p>Estimate the coefficient with the usual <code>lm</code> regression model but this time, standardized coefficients by wrapping each variable with R’s <code>scale</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">housing_standard &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">scale</span>(price) <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(nox) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(crime) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(rooms) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">scale</span>(dist) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(stratio), <span class="dt">data =</span> hprice2)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+scale(price)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(nox)
+</td>
+<td>
+-0.340<sup>***</sup> (0.044)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(crime)
+</td>
+<td>
+-0.143<sup>***</sup> (0.031)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(rooms)
+</td>
+<td>
+0.514<sup>***</sup> (0.030)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(dist)
+</td>
+<td>
+-0.235<sup>***</sup> (0.043)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(stratio)
+</td>
+<td>
+-0.270<sup>***</sup> (0.030)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+506
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.636
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.632
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.606 (df = 501)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+174.822<sup>***</sup> (df = 5; 501)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+<p><strong><code>Example 6.2:</code> Effects of Pollution on Housing Prices, Quadratic Interactive Term</strong></p>
+<p>Modify the housing model, adding a quadratic term in <em>rooms</em>:</p>
+<p><span class="math display">\[log(price) = \beta_0 + \beta_1log(nox) + \beta_2log(dist) + \beta_3rooms + \beta_4rooms^2 + \beta_5stratio + \mu\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">housing_interactive &lt;-<span class="st"> </span><span class="kw">lm</span>(lprice <span class="op">~</span><span class="st"> </span>lnox <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(dist) <span class="op">+</span><span class="st"> </span>rooms<span class="op">+</span><span class="kw">I</span>(rooms<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>stratio, <span class="dt">data =</span> hprice2)</code></pre></div>
+<p>Compare the results with the model from <code>example 6.1</code>.</p>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+scale(price)
+</td>
+<td>
+lprice
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(nox)
+</td>
+<td>
+-0.340<sup>***</sup> (0.044)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(crime)
+</td>
+<td>
+-0.143<sup>***</sup> (0.031)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(rooms)
+</td>
+<td>
+0.514<sup>***</sup> (0.030)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(dist)
+</td>
+<td>
+-0.235<sup>***</sup> (0.043)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+scale(stratio)
+</td>
+<td>
+-0.270<sup>***</sup> (0.030)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lnox
+</td>
+<td>
+</td>
+<td>
+-0.902<sup>***</sup> (0.115)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+log(dist)
+</td>
+<td>
+</td>
+<td>
+-0.087<sup>**</sup> (0.043)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+rooms
+</td>
+<td>
+</td>
+<td>
+-0.545<sup>***</sup> (0.165)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+I(rooms2)
+</td>
+<td>
+</td>
+<td>
+0.062<sup>***</sup> (0.013)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+stratio
+</td>
+<td>
+</td>
+<td>
+-0.048<sup>***</sup> (0.006)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+</td>
+<td>
+13.385<sup>***</sup> (0.566)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+506
+</td>
+<td>
+506
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.636
+</td>
+<td>
+0.603
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.632
+</td>
+<td>
+0.599
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.606 (df = 501)
+</td>
+<td>
+0.259 (df = 500)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+174.822<sup>***</sup> (df = 5; 501)
+</td>
+<td>
+151.770<sup>***</sup> (df = 5; 500)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-7-multiple-regression-analysis-with-qualitative-information" class="section level2">
+<h2>Chapter 7: Multiple Regression Analysis with Qualitative Information</h2>
+<p><strong><code>Example 7.4:</code> Housing Price Regression, Qualitative Binary variable</strong></p>
+<p>This time, use the <code>hrprice1</code> data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;hprice1&quot;</span>)</code></pre></div>
+<p>Data collected from the real estate pages of the Boston Globe during 1990. These are homes that sold in the Boston, MA area.</p>
+<p>If you recently worked with <code>hprice2</code>, it may be helpful to view the documentation on this data set and read the variable names.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?hprice1</code></pre></div>
+<p><span class="math display">\[\widehat{log(price)} = \beta_0 + \beta_1log(lotsize) + \beta_2log(sqrft) + \beta_3bdrms + \beta_4colonial \]</span></p>
+<p>Estimate the coefficients of the above linear model on the <code>hprice</code> data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">housing_qualitative &lt;-<span class="st"> </span><span class="kw">lm</span>(lprice <span class="op">~</span><span class="st"> </span>llotsize <span class="op">+</span><span class="st"> </span>lsqrft <span class="op">+</span><span class="st"> </span>bdrms <span class="op">+</span><span class="st"> </span>colonial, <span class="dt">data =</span> hprice1)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lprice
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+llotsize
+</td>
+<td>
+0.168<sup>***</sup> (0.038)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lsqrft
+</td>
+<td>
+0.707<sup>***</sup> (0.093)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+bdrms
+</td>
+<td>
+0.027 (0.029)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+colonial
+</td>
+<td>
+0.054 (0.045)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-1.350<sup>**</sup> (0.651)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+88
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.649
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.632
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.184 (df = 83)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+38.378<sup>***</sup> (df = 4; 83)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-8-heteroskedasticity" class="section level2">
+<h2>Chapter 8: Heteroskedasticity</h2>
+<p><strong><code>Example 8.9:</code> Determinants of Personal Computer Ownership</strong></p>
+<p><span class="math display">\[\widehat{PC} = \beta_0 + \beta_1hsGPA + \beta_2ACT + \beta_3parcoll + \beta_4colonial \]</span> Christopher Lemmon, a former MSU undergraduate, collected these data from a survey he took of MSU students in Fall 1994. Load <code>gpa1</code> and create a new variable combining the <code>fathcoll</code> and <code>mothcoll</code>, into <code>parcoll</code>. This new column indicates if either parent went to college.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;gpa1&quot;</span>)
+?gpa1</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gpa1<span class="op">$</span>parcoll &lt;-<span class="st"> </span><span class="kw">as.integer</span>(gpa1<span class="op">$</span>fathcoll<span class="op">==</span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gpa1<span class="op">$</span>mothcoll)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GPA_OLS &lt;-<span class="st"> </span><span class="kw">lm</span>(PC <span class="op">~</span><span class="st"> </span>hsGPA <span class="op">+</span><span class="st"> </span>ACT <span class="op">+</span><span class="st"> </span>parcoll, <span class="dt">data =</span> gpa1)</code></pre></div>
+<p>Calculate the weights and then pass them to the <code>weights</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weights &lt;-<span class="st"> </span>GPA_OLS<span class="op">$</span>fitted.values <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>GPA_OLS<span class="op">$</span>fitted.values)
+
+GPA_WLS &lt;-<span class="st"> </span><span class="kw">lm</span>(PC <span class="op">~</span><span class="st"> </span>hsGPA <span class="op">+</span><span class="st"> </span>ACT <span class="op">+</span><span class="st"> </span>parcoll, <span class="dt">data =</span> gpa1, <span class="dt">weights =</span> <span class="dv">1</span><span class="op">/</span>weights)</code></pre></div>
+<p>Compare the OLS and WLS model in the table below:</p>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+PC
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+hsGPA
+</td>
+<td>
+0.065 (0.137)
+</td>
+<td>
+0.033 (0.130)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+ACT
+</td>
+<td>
+0.001 (0.015)
+</td>
+<td>
+0.004 (0.015)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+parcoll
+</td>
+<td>
+0.221<sup>**</sup> (0.093)
+</td>
+<td>
+0.215<sup>**</sup> (0.086)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-0.0004 (0.491)
+</td>
+<td>
+0.026 (0.477)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+141
+</td>
+<td>
+141
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.042
+</td>
+<td>
+0.046
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.021
+</td>
+<td>
+0.026
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error (df = 137)
+</td>
+<td>
+0.486
+</td>
+<td>
+1.016
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic (df = 3; 137)
+</td>
+<td>
+1.979
+</td>
+<td>
+2.224<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-9-more-on-specification-and-data-issues" class="section level2">
+<h2>Chapter 9: More on Specification and Data Issues</h2>
+<p><strong><code>Example 9.8:</code> R&amp;D Intensity and Firm Size</strong></p>
+<p><span class="math display">\[rdintens = \beta_0 + \beta_1sales + \beta_2profmarg + \mu\]</span></p>
+<p>From <em>Businessweek R&amp;D Scoreboard</em>, October 25, 1991. Load the data and estimate the model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;rdchem&quot;</span>)
+?rdchem </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_rdchem &lt;-<span class="st"> </span><span class="kw">lm</span>(rdintens <span class="op">~</span><span class="st"> </span>sales <span class="op">+</span><span class="st"> </span>profmarg, <span class="dt">data =</span> rdchem)</code></pre></div>
+<p>Plotting the data reveals the outlier on the far right of the plot, which will skew the results of our model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_title &lt;-<span class="st"> &quot;FIGURE 9.1: Scatterplot of R&amp;D intensity against firm sales&quot;</span>
+x_axis &lt;-<span class="st"> &quot;firm sales (in millions of dollars)&quot;</span>
+y_axis &lt;-<span class="st"> &quot;R&amp;D as a percentage of sales&quot;</span>
+
+<span class="kw">plot</span>(rdintens <span class="op">~</span><span class="st"> </span>sales, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">bg =</span> <span class="st">&quot;lightgrey&quot;</span>, <span class="dt">data =</span> rdchem, <span class="dt">main =</span> plot_title, 
+    <span class="dt">xlab =</span> x_axis, <span class="dt">ylab =</span> y_axis)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>So, we can estimate the model without that data point to gain a better understanding of how <code>sales</code> and <code>profmarg</code> describe <code>rdintens</code> for most firms. We can use the <code>subset</code> argument of the linear model function to indicate that we only want to estimate the model using data that is less than the highest sales.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">smallest_rdchem &lt;-<span class="st"> </span><span class="kw">lm</span>(rdintens <span class="op">~</span><span class="st"> </span>sales <span class="op">+</span><span class="st"> </span>profmarg, <span class="dt">data =</span> rdchem, 
+                      <span class="dt">subset =</span> (sales <span class="op">&lt;</span><span class="st"> </span><span class="kw">max</span>(sales)))</code></pre></div>
+<p>The table below compares the results of both models side by side. By removing the outlier firm, <span class="math inline">\(sales\)</span> become a more significant determination of R&amp;D expenditures.</p>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+rdintens
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+sales
+</td>
+<td>
+0.0001 (0.00004)
+</td>
+<td>
+0.0002<sup>**</sup> (0.0001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+profmarg
+</td>
+<td>
+0.045 (0.046)
+</td>
+<td>
+0.048 (0.044)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+2.625<sup>***</sup> (0.586)
+</td>
+<td>
+2.297<sup>***</sup> (0.592)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+32
+</td>
+<td>
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.076
+</td>
+<td>
+0.173
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.012
+</td>
+<td>
+0.114
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1.862 (df = 29)
+</td>
+<td>
+1.792 (df = 28)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+1.195 (df = 2; 29)
+</td>
+<td>
+2.925<sup>*</sup> (df = 2; 28)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-10-basic-regression-analysis-with-time-series-data" class="section level2">
+<h2>Chapter 10: Basic Regression Analysis with Time Series Data</h2>
+<p><strong><code>Example 10.2:</code> Effects of Inflation and Deficits on Interest Rates</strong></p>
+<p><span class="math display">\[\widehat{i3} = \beta_0 + \beta_1inf_t + \beta_2def_t\]</span> Data from the <em>Economic Report of the President, 2004</em>, Tables B-64, B-73, and B-79.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;intdef&quot;</span>)
+?intdef</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbill_model &lt;-<span class="st"> </span><span class="kw">lm</span>(i3 <span class="op">~</span><span class="st"> </span>inf <span class="op">+</span><span class="st"> </span>def, <span class="dt">data =</span> intdef)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+i3
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+inf
+</td>
+<td>
+0.606<sup>***</sup> (0.082)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+def
+</td>
+<td>
+0.513<sup>***</sup> (0.118)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.733<sup>***</sup> (0.432)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.602
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.587
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1.843 (df = 53)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+40.094<sup>***</sup> (df = 2; 53)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<p><strong><code>Example 10.11:</code> Seasonal Effects of Antidumping Filings</strong></p>
+<p>C.M. Krupp and P.S. Pollard (1999), <em>Market Responses to Antidumpting Laws: Some Evidence from the U.S. Chemical Industry</em>, Canadian Journal of Economics 29, 199-227. Dr. Krupp kindly provided the data. They are monthly data covering February 1978 through December 1988.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;barium&quot;</span>)
+?barium</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">barium_imports &lt;-<span class="st"> </span><span class="kw">lm</span>(lchnimp <span class="op">~</span><span class="st"> </span>lchempi <span class="op">+</span><span class="st"> </span>lgas <span class="op">+</span><span class="st"> </span>lrtwex <span class="op">+</span><span class="st"> </span>befile6 <span class="op">+</span><span class="st"> </span>affile6 <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span>afdec6, <span class="dt">data =</span> barium)</code></pre></div>
+<p>Estimate a new model, <code>barium_seasonal</code> which accounts for seasonality by adding dummy variables contained in the data. Compute the <code>anova</code> between the two models.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">barium_seasonal &lt;-<span class="st"> </span><span class="kw">lm</span>(lchnimp <span class="op">~</span><span class="st"> </span>lchempi <span class="op">+</span><span class="st"> </span>lgas <span class="op">+</span><span class="st"> </span>lrtwex <span class="op">+</span><span class="st"> </span>befile6 <span class="op">+</span><span class="st"> </span>affile6 <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span>afdec6 <span class="op">+</span><span class="st"> </span>feb <span class="op">+</span><span class="st"> </span>mar <span class="op">+</span><span class="st"> </span>apr <span class="op">+</span><span class="st"> </span>may <span class="op">+</span><span class="st"> </span>jun <span class="op">+</span><span class="st"> </span>jul <span class="op">+</span><span class="st"> </span>aug <span class="op">+</span><span class="st"> </span>sep <span class="op">+</span><span class="st"> </span>oct <span class="op">+</span><span class="st"> </span>nov <span class="op">+</span><span class="st"> </span>dec, 
+    <span class="dt">data =</span> barium)
+barium_anova &lt;-<span class="st"> </span><span class="kw">anova</span>(barium_imports, barium_seasonal)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+lchnimp
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lchempi
+</td>
+<td>
+3.117<sup>***</sup> (0.479)
+</td>
+<td>
+3.265<sup>***</sup> (0.493)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lgas
+</td>
+<td>
+0.196 (0.907)
+</td>
+<td>
+-1.278 (1.389)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lrtwex
+</td>
+<td>
+0.983<sup>**</sup> (0.400)
+</td>
+<td>
+0.663 (0.471)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+befile6
+</td>
+<td>
+0.060 (0.261)
+</td>
+<td>
+0.140 (0.267)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+affile6
+</td>
+<td>
+-0.032 (0.264)
+</td>
+<td>
+0.013 (0.279)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+afdec6
+</td>
+<td>
+-0.565<sup>*</sup> (0.286)
+</td>
+<td>
+-0.521<sup>*</sup> (0.302)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+feb
+</td>
+<td>
+</td>
+<td>
+-0.418 (0.304)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+mar
+</td>
+<td>
+</td>
+<td>
+0.059 (0.265)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+apr
+</td>
+<td>
+</td>
+<td>
+-0.451<sup>*</sup> (0.268)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+may
+</td>
+<td>
+</td>
+<td>
+0.033 (0.269)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+jun
+</td>
+<td>
+</td>
+<td>
+-0.206 (0.269)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+jul
+</td>
+<td>
+</td>
+<td>
+0.004 (0.279)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+aug
+</td>
+<td>
+</td>
+<td>
+-0.157 (0.278)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+sep
+</td>
+<td>
+</td>
+<td>
+-0.134 (0.268)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+oct
+</td>
+<td>
+</td>
+<td>
+0.052 (0.267)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+nov
+</td>
+<td>
+</td>
+<td>
+-0.246 (0.263)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+dec
+</td>
+<td>
+</td>
+<td>
+0.133 (0.271)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-17.803 (21.045)
+</td>
+<td>
+16.779 (32.429)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+131
+</td>
+<td>
+131
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.305
+</td>
+<td>
+0.358
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.271
+</td>
+<td>
+0.262
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.597 (df = 124)
+</td>
+<td>
+0.601 (df = 113)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+9.064<sup>***</sup> (df = 6; 124)
+</td>
+<td>
+3.712<sup>***</sup> (df = 17; 113)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Statistic
+</td>
+<td>
+N
+</td>
+<td>
+Mean
+</td>
+<td>
+St. Dev.
+</td>
+<td>
+Min
+</td>
+<td>
+Max
+</td>
+</tr>
+<tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Res.Df
+</td>
+<td>
+2
+</td>
+<td>
+118.500
+</td>
+<td>
+7.778
+</td>
+<td>
+113
+</td>
+<td>
+124
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RSS
+</td>
+<td>
+2
+</td>
+<td>
+42.545
+</td>
+<td>
+2.406
+</td>
+<td>
+40.844
+</td>
+<td>
+44.247
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Df
+</td>
+<td>
+1
+</td>
+<td>
+11.000
+</td>
+<td>
+</td>
+<td>
+11
+</td>
+<td>
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Sum of Sq
+</td>
+<td>
+1
+</td>
+<td>
+3.403
+</td>
+<td>
+</td>
+<td>
+3.403
+</td>
+<td>
+3.403
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F
+</td>
+<td>
+1
+</td>
+<td>
+0.856
+</td>
+<td>
+</td>
+<td>
+0.856
+</td>
+<td>
+0.856
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Pr(&gt; F)
+</td>
+<td>
+1
+</td>
+<td>
+0.585
+</td>
+<td>
+</td>
+<td>
+0.585
+</td>
+<td>
+0.585
+</td>
+</tr>
+<tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-11-further-issues-in-using-ols-with-with-time-series-data" class="section level2">
+<h2>Chapter 11: Further Issues in Using OLS with with Time Series Data</h2>
+<p><strong><code>Example 11.7:</code> Wages and Productivity</strong></p>
+<p><span class="math display">\[\widehat{log(hrwage_t)} = \beta_0 + \beta_1log(outphr_t) + \beta_2t + \mu_t\]</span> Data from the <em>Economic Report of the President, 1989</em>, Table B-47. The data are for the non-farm business sector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;earns&quot;</span>)
+?earns</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wage_time &lt;-<span class="st"> </span><span class="kw">lm</span>(lhrwage <span class="op">~</span><span class="st"> </span>loutphr <span class="op">+</span><span class="st"> </span>t, <span class="dt">data =</span> earns)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wage_diff &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">diff</span>(lhrwage) <span class="op">~</span><span class="st"> </span><span class="kw">diff</span>(loutphr), <span class="dt">data =</span> earns)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lhrwage
+</td>
+<td>
+diff(lhrwage)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+loutphr
+</td>
+<td>
+1.640<sup>***</sup> (0.093)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+t
+</td>
+<td>
+-0.018<sup>***</sup> (0.002)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+diff(loutphr)
+</td>
+<td>
+</td>
+<td>
+0.809<sup>***</sup> (0.173)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-5.328<sup>***</sup> (0.374)
+</td>
+<td>
+-0.004 (0.004)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+41
+</td>
+<td>
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.971
+</td>
+<td>
+0.364
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.970
+</td>
+<td>
+0.348
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error (df = 38)
+</td>
+<td>
+0.029
+</td>
+<td>
+0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+641.224<sup>***</sup> (df = 2; 38)
+</td>
+<td>
+21.771<sup>***</sup> (df = 1; 38)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-12-serial-correlation-and-heteroskedasticiy-in-time-series-regressions" class="section level2">
+<h2>Chapter 12: Serial Correlation and Heteroskedasticiy in Time Series Regressions</h2>
+<p><strong><code>Example 12.4</code>: Prais-Winsten Estimation in the Event Study</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;barium&quot;</span>)
+barium_model &lt;-<span class="st"> </span><span class="kw">lm</span>(lchnimp <span class="op">~</span><span class="st"> </span>lchempi <span class="op">+</span><span class="st"> </span>lgas <span class="op">+</span><span class="st"> </span>lrtwex <span class="op">+</span><span class="st"> </span>befile6 <span class="op">+</span><span class="st"> </span>affile6 <span class="op">+</span><span class="st"> </span>afdec6, 
+    <span class="dt">data =</span> barium)</code></pre></div>
+<p>Load the <code>prais</code> package, use the <code>prais.winsten</code> function to estimate.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(prais)
+barium_prais_winsten &lt;-<span class="st"> </span><span class="kw">prais.winsten</span>(lchnimp <span class="op">~</span><span class="st"> </span>lchempi <span class="op">+</span><span class="st"> </span>lgas <span class="op">+</span><span class="st"> </span>lrtwex <span class="op">+</span><span class="st"> </span>befile6 <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span>affile6 <span class="op">+</span><span class="st"> </span>afdec6, <span class="dt">data =</span> barium)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lchnimp
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lchempi
+</td>
+<td>
+3.117<sup>***</sup> (0.479)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lgas
+</td>
+<td>
+0.196 (0.907)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lrtwex
+</td>
+<td>
+0.983<sup>**</sup> (0.400)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+befile6
+</td>
+<td>
+0.060 (0.261)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+affile6
+</td>
+<td>
+-0.032 (0.264)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+afdec6
+</td>
+<td>
+-0.565<sup>*</sup> (0.286)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-17.803 (21.045)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+131
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.305
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.271
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.597 (df = 124)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+9.064<sup>***</sup> (df = 6; 124)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">barium_prais_winsten</code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = fo)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.01146 -0.39152  0.06758  0.35063  1.35021 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## Intercept -37.07771   22.77830  -1.628   0.1061    
+## lchempi     2.94095    0.63284   4.647 8.46e-06 ***
+## lgas        1.04638    0.97734   1.071   0.2864    
+## lrtwex      1.13279    0.50666   2.236   0.0272 *  
+## befile6    -0.01648    0.31938  -0.052   0.9589    
+## affile6    -0.03316    0.32181  -0.103   0.9181    
+## afdec6     -0.57681    0.34199  -1.687   0.0942 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5733 on 124 degrees of freedom
+## Multiple R-squared:  0.9841, Adjusted R-squared:  0.9832 
+## F-statistic:  1096 on 7 and 124 DF,  p-value: &lt; 2.2e-16
+## 
+## 
+## [[2]]
+##        Rho Rho.t.statistic Iterations
+##  0.2932171        3.483363          8</code></pre>
+
+<p><strong><code>Example 12.8:</code> Heteroskedasticity and the Efficient Markets Hypothesis</strong></p>
+<p>These are Wednesday closing prices of value-weighted NYSE average, available in many publications. Wooldridge does not recall the particular source used when he collected these data at MIT, but notes probably the easiest way to get similar data is to go to the NYSE web site, <a href="https://www.nyse.com/data-and-tech">www.nyse.com</a>.</p>
+<p><span class="math display">\[return_t = \beta_0 + \beta_1return_{t-1} + \mu_t\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;nyse&quot;</span>)
+?nyse </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">return_AR1 &lt;-<span class="kw">lm</span>(return <span class="op">~</span><span class="st"> </span>return_<span class="dv">1</span>, <span class="dt">data =</span> nyse)</code></pre></div>
+<p><span class="math display">\[\hat{\mu^2_t} = \beta_0 + \beta_1return_{t-1} + residual_t\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">return_mu &lt;-<span class="st"> </span><span class="kw">residuals</span>(return_AR1)
+mu2_hat_model &lt;-<span class="st"> </span><span class="kw">lm</span>(return_mu<span class="op">^</span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span>return_<span class="dv">1</span>, <span class="dt">data =</span> return_AR1<span class="op">$</span>model)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+return
+</td>
+<td>
+return_mu2
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+return_1
+</td>
+<td>
+0.059 (0.038)
+</td>
+<td>
+-1.104<sup>***</sup> (0.201)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.180<sup>**</sup> (0.081)
+</td>
+<td>
+4.657<sup>***</sup> (0.428)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+689
+</td>
+<td>
+689
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.003
+</td>
+<td>
+0.042
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.002
+</td>
+<td>
+0.041
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error (df = 687)
+</td>
+<td>
+2.110
+</td>
+<td>
+11.178
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic (df = 1; 687)
+</td>
+<td>
+2.399
+</td>
+<td>
+30.055<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+<p><strong><code>Example 12.9:</code> ARCH in Stock Returns</strong></p>
+<p><span class="math display">\[\hat{\mu^2_t} = \beta_0 + \hat{\mu^2_{t-1}} + residual_t\]</span></p>
+<p>We still have <code>return_mu</code> in the working environment so we can use it to create <span class="math inline">\(\hat{\mu^2_t}\)</span>, (<code>mu2_hat</code>) and <span class="math inline">\(\hat{\mu^2_{t-1}}\)</span> (<code>mu2_hat_1</code>). Notice the use <code>R</code>’s matrix subset operations to perform the lag operation. We drop the first observation of <code>mu2_hat</code> and squared the results. Next, we remove the last observation of <code>mu2_hat_1</code> using the subtraction operator combined with a call to the <code>NROW</code> function on <code>return_mu</code>. Now, both contain <span class="math inline">\(688\)</span> observations and we can estimate a standard linear model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mu2_hat  &lt;-<span class="st"> </span>return_mu[<span class="op">-</span><span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span>
+mu2_hat_<span class="dv">1</span> &lt;-<span class="st"> </span>return_mu[<span class="op">-</span><span class="kw">NROW</span>(return_mu)]<span class="op">^</span><span class="dv">2</span>
+arch_model &lt;-<span class="st"> </span><span class="kw">lm</span>(mu2_hat <span class="op">~</span><span class="st"> </span>mu2_hat_<span class="dv">1</span>)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+mu2_hat
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+mu2_hat_1
+</td>
+<td>
+0.337<sup>***</sup> (0.036)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+2.947<sup>***</sup> (0.440)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+688
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.114
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.112
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+10.759 (df = 686)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+87.923<sup>***</sup> (df = 1; 686)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-13-pooling-cross-sections-across-time-simple-panel-data-methods" class="section level2">
+<h2>Chapter 13: Pooling Cross Sections across Time: Simple Panel Data Methods</h2>
+<p><strong><code>Example 13.7:</code> Effect of Drunk Driving Laws on Traffic Fatalities</strong></p>
+<p>Wooldridge collected these data from two sources, the 1992 <em>Statistical Abstract of the United States</em> (Tables 1009, 1012) and <em>A Digest of State Alcohol-Highway Safety Related Legislation</em>, 1985 and 1990, published by the U.S. National Highway Traffic Safety Administration. <span class="math display">\[\widehat{\Delta{dthrte}} = \beta_0 + \Delta{open} + \Delta{admin}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;traffic1&quot;</span>)
+?traffic1</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DD_model &lt;-<span class="st"> </span><span class="kw">lm</span>(cdthrte <span class="op">~</span><span class="st"> </span>copen <span class="op">+</span><span class="st"> </span>cadmn, <span class="dt">data =</span> traffic1)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+cdthrte
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+copen
+</td>
+<td>
+-0.420<sup>**</sup> (0.206)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+cadmn
+</td>
+<td>
+-0.151 (0.117)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-0.497<sup>***</sup> (0.052)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.119
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.082
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.344 (df = 48)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+3.231<sup>**</sup> (df = 2; 48)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-14-advanced-panel-data-methods" class="section level2">
+<h2>Chapter 14: Advanced Panel Data Methods</h2>
+<p><strong><code>Example 14.1:</code> Effect of Job Training on Firm Scrap Rates</strong></p>
+<p>In this section, we will estimate a linear panel modeg using the <code>plm</code> function from the <code>plm: Linear Models for Panel Data</code> package. See the bibliography for more information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plm)
+<span class="kw">data</span>(<span class="st">&quot;jtrain&quot;</span>)
+scrap_panel &lt;-<span class="st"> </span><span class="kw">plm</span>(lscrap <span class="op">~</span><span class="st"> </span>d88 <span class="op">+</span><span class="st"> </span>d89 <span class="op">+</span><span class="st"> </span>grant <span class="op">+</span><span class="st"> </span>grant_<span class="dv">1</span>, <span class="dt">data =</span> jtrain, <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;fcode&quot;</span>, 
+    <span class="st">&quot;year&quot;</span>), <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>, <span class="dt">effect =</span> <span class="st">&quot;individual&quot;</span>)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lscrap
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+d88
+</td>
+<td>
+-0.080 (0.109)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+d89
+</td>
+<td>
+-0.247<sup>*</sup> (0.133)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+grant
+</td>
+<td>
+-0.252<sup>*</sup> (0.151)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+grant_1
+</td>
+<td>
+-0.422<sup>**</sup> (0.210)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+162
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.201
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+-0.237
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+6.543<sup>***</sup> (df = 4; 104)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-15-instrumental-variables-estimation-and-two-stage-least-squares" class="section level2">
+<h2>Chapter 15: Instrumental Variables Estimation and Two Stage Least Squares</h2>
+<p><strong><code>Example 15.1:</code> Estimating the Return to Education for Married Women</strong></p>
+<p>T.A. Mroz (1987), <em>The Sensitivity of an Empirical Model of Married Women’s Hours of Work to Economic and Statistical Assumptions</em>, Econometrica 55, 765-799. Professor Ernst R. Berndt, of MIT, kindly provided the data, which he obtained from Professor Mroz.</p>
+<p><span class="math display">\[log(wage) = \beta_0 + \beta_1educ + \mu\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;mroz&quot;</span>)
+?mroz</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wage_educ_model &lt;-<span class="st"> </span><span class="kw">lm</span>(lwage <span class="op">~</span><span class="st"> </span>educ, <span class="dt">data =</span> mroz)</code></pre></div>
+<p><span class="math display">\[\widehat{educ} = \beta_0 + \beta_1fatheduc\]</span></p>
+<p>We run the typical linear model, but notice the use of the <code>subset</code> argument. <code>inlf</code> is a binary variable in which a value of 1 means they are “In the Labor Force”. By sub-setting the <code>mroz</code> data.frame by observations in which <code>inlf==1</code>, only working women will be in the sample.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fatheduc_model &lt;-<span class="st"> </span><span class="kw">lm</span>(educ <span class="op">~</span><span class="st"> </span>fatheduc, <span class="dt">data =</span> mroz, <span class="dt">subset =</span> (inlf<span class="op">==</span><span class="dv">1</span>))</code></pre></div>
+<p>In this section, we will perform an <strong>Instrumental-Variable Regression</strong>, using the <code>ivreg</code> function in the <code>AER (Applied Econometrics with R)</code> package. See the bibliography for more information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;AER&quot;</span>)
+wage_educ_IV &lt;-<span class="st"> </span><span class="kw">ivreg</span>(lwage <span class="op">~</span><span class="st"> </span>educ <span class="op">|</span><span class="st"> </span>fatheduc, <span class="dt">data =</span> mroz)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lwage
+</td>
+<td>
+educ
+</td>
+<td>
+lwage
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>OLS</em>
+</td>
+<td>
+<em>OLS</em>
+</td>
+<td>
+<em>instrumental</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em></em>
+</td>
+<td>
+<em></em>
+</td>
+<td>
+<em>variable</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+0.109<sup>***</sup> (0.014)
+</td>
+<td>
+</td>
+<td>
+0.059<sup>*</sup> (0.035)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+fatheduc
+</td>
+<td>
+</td>
+<td>
+0.269<sup>***</sup> (0.029)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-0.185 (0.185)
+</td>
+<td>
+10.237<sup>***</sup> (0.276)
+</td>
+<td>
+0.441 (0.446)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+428
+</td>
+<td>
+428
+</td>
+<td>
+428
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.118
+</td>
+<td>
+0.173
+</td>
+<td>
+0.093
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.116
+</td>
+<td>
+0.171
+</td>
+<td>
+0.091
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error (df = 426)
+</td>
+<td>
+0.680
+</td>
+<td>
+2.081
+</td>
+<td>
+0.689
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic (df = 1; 426)
+</td>
+<td>
+56.929<sup>***</sup>
+</td>
+<td>
+88.841<sup>***</sup>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="3" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+<p><strong><code>Example 15.2:</code> Estimating the Return to Education for Men</strong></p>
+<p>Data from M. Blackburn and D. Neumark (1992), <em>Unobserved Ability, Efficiency Wages, and Interindustry Wage Differentials</em>, Quarterly Journal of Economics 107, 1421-1436. Professor Neumark kindly provided the data, of which Wooldridge uses the data for 1980.</p>
+<p><span class="math display">\[\widehat{educ} = \beta_0 + sibs\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;wage2&quot;</span>)
+?wage2</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">educ_sibs_model &lt;-<span class="st"> </span><span class="kw">lm</span>(educ <span class="op">~</span><span class="st"> </span>sibs, <span class="dt">data =</span> wage2)</code></pre></div>
+<p><span class="math display">\[\widehat{log(wage)} = \beta_0 + educ\]</span></p>
+<p>Again, estimate the model using the <code>ivreg</code> function in the <code>AER (Applied Econometrics with R)</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;AER&quot;</span>)
+educ_sibs_IV &lt;-<span class="st"> </span><span class="kw">ivreg</span>(lwage <span class="op">~</span><span class="st"> </span>educ <span class="op">|</span><span class="st"> </span>sibs, <span class="dt">data =</span> wage2)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+educ
+</td>
+<td colspan="2">
+lwage
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>OLS</em>
+</td>
+<td colspan="2">
+<em>instrumental</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em></em>
+</td>
+<td colspan="2">
+<em>variable</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+sibs
+</td>
+<td>
+-0.228<sup>***</sup> (0.030)
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+</td>
+<td>
+0.122<sup>***</sup> (0.026)
+</td>
+<td>
+0.059<sup>*</sup> (0.035)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+14.139<sup>***</sup> (0.113)
+</td>
+<td>
+5.130<sup>***</sup> (0.355)
+</td>
+<td>
+0.441 (0.446)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+935
+</td>
+<td>
+935
+</td>
+<td>
+428
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.057
+</td>
+<td>
+-0.009
+</td>
+<td>
+0.093
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.056
+</td>
+<td>
+-0.010
+</td>
+<td>
+0.091
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+2.134 (df = 933)
+</td>
+<td>
+0.423 (df = 933)
+</td>
+<td>
+0.689 (df = 426)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+56.667<sup>***</sup> (df = 1; 933)
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="3" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+<p><strong><code>Example 15.5:</code> Return to Education for Working Women</strong></p>
+<p><span class="math display">\[\widehat{log(wage)} = \beta_0 + \beta_1educ + \beta_2exper + \beta_3exper^2\]</span></p>
+<p>Use the <code>ivreg</code> function in the <code>AER (Applied Econometrics with R)</code> package to estimate.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;mroz&quot;</span>)
+wage_educ_exper_IV &lt;-<span class="st"> </span><span class="kw">ivreg</span>(lwage <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>exper <span class="op">+</span><span class="st"> </span>expersq <span class="op">|</span><span class="st"> </span>exper <span class="op">+</span><span class="st"> </span>expersq <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span>motheduc <span class="op">+</span><span class="st"> </span>fatheduc, <span class="dt">data =</span> mroz)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+lwage
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+educ
+</td>
+<td>
+0.061<sup>*</sup> (0.031)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+exper
+</td>
+<td>
+0.044<sup>***</sup> (0.013)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+expersq
+</td>
+<td>
+-0.001<sup>**</sup> (0.0004)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.048 (0.400)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+428
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.136
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.130
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.675 (df = 424)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-16-simultaneous-equations-models" class="section level2">
+<h2>Chapter 16: Simultaneous Equations Models</h2>
+<p><strong><code>Example 16.4:</code> INFLATION AND OPENNESS</strong></p>
+<p>Data from D. Romer (1993), <em>Openness and Inflation: Theory and Evidence</em>, Quarterly Journal of Economics 108, 869-903. The data are included in the article.</p>
+<p><span class="math display">\[inf = \beta_{10} + \alpha_1open + \beta_{11}log(pcinc) + \mu_1\]</span> <span class="math display">\[open = \beta_{20} + \alpha_2inf + \beta_{21}log(pcinc) + \beta_{22}log(land) + \mu_2\]</span></p>
+<p><strong><code>Example 16.6:</code> INFLATION AND OPENNESS</strong></p>
+<p><span class="math display">\[\widehat{open} = \beta_0 + \beta_{1}log(pcinc) + \beta_{2}log(land)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;openness&quot;</span>)
+?openness</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">open_model &lt;-<span class="kw">lm</span>(open <span class="op">~</span><span class="st"> </span>lpcinc <span class="op">+</span><span class="st"> </span>lland, <span class="dt">data =</span> openness)</code></pre></div>
+<p><span class="math display">\[\widehat{inf} = \beta_0 + \beta_{1}open + \beta_{2}log(pcinc)\]</span></p>
+<p>Use the <code>ivreg</code> function in the <code>AER (Applied Econometrics with R)</code> package to estimate.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(AER)
+inflation_IV &lt;-<span class="st"> </span><span class="kw">ivreg</span>(inf <span class="op">~</span><span class="st"> </span>open <span class="op">+</span><span class="st"> </span>lpcinc <span class="op">|</span><span class="st"> </span>lpcinc <span class="op">+</span><span class="st"> </span>lland, <span class="dt">data =</span> openness)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+open
+</td>
+<td>
+inf
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>OLS</em>
+</td>
+<td>
+<em>instrumental</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em></em>
+</td>
+<td>
+<em>variable</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+open
+</td>
+<td>
+</td>
+<td>
+-0.337<sup>**</sup> (0.144)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lpcinc
+</td>
+<td>
+0.546 (1.493)
+</td>
+<td>
+0.376 (2.015)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+lland
+</td>
+<td>
+-7.567<sup>***</sup> (0.814)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+117.085<sup>***</sup> (15.848)
+</td>
+<td>
+26.899<sup>*</sup> (15.401)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+114
+</td>
+<td>
+114
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.449
+</td>
+<td>
+0.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.439
+</td>
+<td>
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error (df = 111)
+</td>
+<td>
+17.796
+</td>
+<td>
+23.836
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+45.165<sup>***</sup> (df = 2; 111)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-17-limited-dependent-variable-models-and-sample-selection-corrections" class="section level2">
+<h2>Chapter 17: Limited Dependent Variable Models and Sample Selection Corrections</h2>
+<p><strong><code>Example 17.3:</code> POISSON REGRESSION FOR NUMBER OF ARRESTS</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;crime1&quot;</span>)</code></pre></div>
+<p>Sometimes, when estimating a model with many variables, defining a <code>model</code> object containing the formula makes for much cleaner code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">formula &lt;-<span class="st"> </span>(narr86 <span class="op">~</span><span class="st"> </span>pcnv <span class="op">+</span><span class="st"> </span>avgsen <span class="op">+</span><span class="st"> </span>tottime <span class="op">+</span><span class="st"> </span>ptime86 <span class="op">+</span><span class="st"> </span>qemp86 <span class="op">+</span><span class="st"> </span>inc86 <span class="op">+</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span>hispan <span class="op">+</span><span class="st"> </span>born60)</code></pre></div>
+<p>Then, pass the <code>formula</code> object into the <code>lm</code> function, and define the <code>data</code> argument as usual.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">econ_crime_model &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> crime1)</code></pre></div>
+<p>To estimate the <code>poisson</code> regression, use the general linear model function <code>glm</code> and define the <code>family</code> argument as <code>poisson</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">econ_crim_poisson &lt;-<span class="st"> </span><span class="kw">glm</span>(formula, <span class="dt">data =</span> crime1, <span class="dt">family =</span> poisson)</code></pre></div>
+<p>Use the <code>stargazer</code> package to easily compare diagnostic tables of both models.</p>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+narr86
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>OLS</em>
+</td>
+<td>
+<em>Poisson</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+pcnv
+</td>
+<td>
+-0.132<sup>***</sup> (0.040)
+</td>
+<td>
+-0.402<sup>***</sup> (0.085)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+avgsen
+</td>
+<td>
+-0.011 (0.012)
+</td>
+<td>
+-0.024 (0.020)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+tottime
+</td>
+<td>
+0.012 (0.009)
+</td>
+<td>
+0.024<sup>*</sup> (0.015)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+ptime86
+</td>
+<td>
+-0.041<sup>***</sup> (0.009)
+</td>
+<td>
+-0.099<sup>***</sup> (0.021)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+qemp86
+</td>
+<td>
+-0.051<sup>***</sup> (0.014)
+</td>
+<td>
+-0.038 (0.029)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+inc86
+</td>
+<td>
+-0.001<sup>***</sup> (0.0003)
+</td>
+<td>
+-0.008<sup>***</sup> (0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+black
+</td>
+<td>
+0.327<sup>***</sup> (0.045)
+</td>
+<td>
+0.661<sup>***</sup> (0.074)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+hispan
+</td>
+<td>
+0.194<sup>***</sup> (0.040)
+</td>
+<td>
+0.500<sup>***</sup> (0.074)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+born60
+</td>
+<td>
+-0.022 (0.033)
+</td>
+<td>
+-0.051 (0.064)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.577<sup>***</sup> (0.038)
+</td>
+<td>
+-0.600<sup>***</sup> (0.067)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+2,725
+</td>
+<td>
+2,725
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.072
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.069
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+</td>
+<td>
+-2,248.761
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+</td>
+<td>
+4,517.522
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.829 (df = 2715)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+23.572<sup>***</sup> (df = 9; 2715)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+</div>
+<div id="chapter-18-advanced-time-series-topics" class="section level2">
+<h2>Chapter 18: Advanced Time Series Topics</h2>
+<p><strong><code>Example 18.8:</code> FORECASTING THE U.S. UNEMPLOYMENT RATE</strong></p>
+<p>Data from <em>Economic Report of the President, 2004</em>, Tables B-42 and B-64.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;phillips&quot;</span>)
+?phillips</code></pre></div>
+<p><span class="math display">\[\widehat{unemp_t} = \beta_0 + \beta_1unem_{t-1}\]</span></p>
+<p>Estimate the linear model in the usual way and note the use of the <code>subset</code> argument to define data equal to and before the year 1996.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phillips_train &lt;-<span class="st"> </span><span class="kw">subset</span>(phillips, year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1996</span>)
+
+unem_AR1 &lt;-<span class="st"> </span><span class="kw">lm</span>(unem <span class="op">~</span><span class="st"> </span>unem_<span class="dv">1</span>, <span class="dt">data =</span> phillips_train)</code></pre></div>
+<p><span class="math display">\[\widehat{unemp_t} = \beta_0 + \beta_1unem_{t-1} + \beta_2inf_{t-1}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unem_inf_VAR1 &lt;-<span class="st"> </span><span class="kw">lm</span>(unem <span class="op">~</span><span class="st"> </span>unem_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>inf_<span class="dv">1</span>, <span class="dt">data =</span> phillips_train)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+unem
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+unem_1
+</td>
+<td>
+0.732<sup>***</sup> (0.097)
+</td>
+<td>
+0.647<sup>***</sup> (0.084)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+inf_1
+</td>
+<td>
+</td>
+<td>
+0.184<sup>***</sup> (0.041)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.572<sup>***</sup> (0.577)
+</td>
+<td>
+1.304<sup>**</sup> (0.490)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+48
+</td>
+<td>
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.554
+</td>
+<td>
+0.691
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.544
+</td>
+<td>
+0.677
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1.049 (df = 46)
+</td>
+<td>
+0.883 (df = 45)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+57.132<sup>***</sup> (df = 1; 46)
+</td>
+<td>
+50.219<sup>***</sup> (df = 2; 45)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<p>Now, use the <code>subset</code> argument to create our testing data set containing observation after 1996. Next, pass the both the model object and the test set to the <code>predict</code> function for both models. Finally, <code>cbind</code> or “column bind” both forecasts as well as the year and unemployment rate of the test set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phillips_test &lt;-<span class="st"> </span><span class="kw">subset</span>(phillips, year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1997</span>)
+
+AR1_forecast &lt;-<span class="st"> </span><span class="kw">predict.lm</span>(unem_AR1, <span class="dt">newdata =</span> phillips_test)
+VAR1_forecast &lt;-<span class="st"> </span><span class="kw">predict.lm</span>(unem_inf_VAR1, <span class="dt">newdata =</span> phillips_test)
+
+<span class="kw">kable</span>(<span class="kw">cbind</span>(phillips_test[ ,<span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;unem&quot;</span>)], AR1_forecast, VAR1_forecast))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">year</th>
+<th align="right">unem</th>
+<th align="right">AR1_forecast</th>
+<th align="right">VAR1_forecast</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>50</td>
+<td align="right">1997</td>
+<td align="right">4.9</td>
+<td align="right">5.526452</td>
+<td align="right">5.348468</td>
+</tr>
+<tr class="even">
+<td>51</td>
+<td align="right">1998</td>
+<td align="right">4.5</td>
+<td align="right">5.160275</td>
+<td align="right">4.896451</td>
+</tr>
+<tr class="odd">
+<td>52</td>
+<td align="right">1999</td>
+<td align="right">4.2</td>
+<td align="right">4.867333</td>
+<td align="right">4.509137</td>
+</tr>
+<tr class="even">
+<td>53</td>
+<td align="right">2000</td>
+<td align="right">4.0</td>
+<td align="right">4.647627</td>
+<td align="right">4.425175</td>
+</tr>
+<tr class="odd">
+<td>54</td>
+<td align="right">2001</td>
+<td align="right">4.8</td>
+<td align="right">4.501157</td>
+<td align="right">4.516062</td>
+</tr>
+<tr class="even">
+<td>55</td>
+<td align="right">2002</td>
+<td align="right">5.8</td>
+<td align="right">5.087040</td>
+<td align="right">4.923537</td>
+</tr>
+<tr class="odd">
+<td>56</td>
+<td align="right">2003</td>
+<td align="right">6.0</td>
+<td align="right">5.819394</td>
+<td align="right">5.350271</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div id="appendix" class="section level1">
+<h1>Appendix</h1>
+<div id="using-r-for-introductory-econometrics" class="section level3">
+<h3>Using R for Introductory Econometrics</h3>
+<p>This is an excellent open source complimentary text to “Introductory Econometrics” by Jeffrey M. Wooldridge and should be your number one resource. This excerpt from the book’s website:</p>
+<blockquote>
+<p>This book introduces the popular, powerful and free programming language and software package R with a focus on the implementation of standard tools and methods used in econometrics. Unlike other books on similar topics, it does not attempt to provide a self-contained discussion of econometric models and methods. Instead, it builds on the excellent and popular textbook “Introductory Econometrics” by Jeffrey M. Wooldridge.</p>
+</blockquote>
+<p>Hess, Florian. <em>Using R for Introductory Econometrics</em>. ISBN: 978-1-523-28513-6, CreateSpace Independent Publishing Platform, 2016, Dusseldorf, Germany.</p>
+<p><a href="http://www.urfie.net/">url: http://www.urfie.net/</a>.</p>
+</div>
+<div id="applied-econometrics-with-r" class="section level3">
+<h3>Applied Econometrics with R</h3>
+<p>From the publisher’s website:</p>
+<blockquote>
+<p>This is the first book on applied econometrics using the R system for statistical computing and graphics. It presents hands-on examples for a wide range of econometric models, from classical linear regression models for cross-section, time series or panel data and the common non-linear models of microeconometrics such as logit, probit and tobit models, to recent semiparametric extensions. In addition, it provides a chapter on programming, including simulations, optimization, and an introduction to R tools enabling reproducible econometric research. An R package accompanying this book, AER, is available from the Comprehensive R Archive Network (CRAN) at <a href="https://CRAN.R-project.org/package=AER" class="uri">https://CRAN.R-project.org/package=AER</a>.</p>
+</blockquote>
+<p>Kleiber, Christian and Achim Zeileis. <em>Applied Econometrics with R</em>. ISBN 978-0-387-77316-2, Springer-Verlag, 2008, New York. <a href="https://www.springer.com/us/book/9780387773162" class="uri">https://www.springer.com/us/book/9780387773162</a></p>
+
+</div>
+<div id="bibliography" class="section level2">
+<h2>Bibliography</h2>
+<p>Yves Croissant, Giovanni Millo (2008). <em>Panel Data Econometrics in R: The plm Package</em>. Journal of Statistical Software 27(2). URL www.jstatsoft.org/v27/i02/.</p>
+<p>Marek Hlavac (2015). <em>stargazer: Well-Formatted Regression and Summary Statistics Tables</em>. R package version 5.2. <a href="https://CRAN.R-project.org/package=stargazer" class="uri">https://CRAN.R-project.org/package=stargazer</a></p>
+<p>Christian Kleiber and Achim Zeileis (2008). <em>Applied Econometrics with R</em>. New York: Springer-Verlag. ISBN 978-0-387-77316-2. URL <a href="https://CRAN.R-project.org/package=AER" class="uri">https://CRAN.R-project.org/package=AER</a></p>
+<p>Franz Mohr (2015). <em>prais: Prais-Winsten Estimation Procedure for AR(1) Serial Correlation</em>. R package version 0.1.1. <a href="https://CRAN.R-project.org/package=prais" class="uri">https://CRAN.R-project.org/package=prais</a></p>
+<p>R Core Team (2018). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing, Vienna, Austria. URL <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>Hadley Wickham and Winston Chang (2016). <em>devtools: Tools to Make Developing R Packages Easier</em>. R package version 1.12.0. <a href="https://CRAN.R-project.org/package=devtools" class="uri">https://CRAN.R-project.org/package=devtools</a></p>
+<p>Hadley Wickham. <em>testthat: Get Started with Testing</em>. R package version 1.0.2. <a href="https://CRAN.R-project.org/package=testthat" class="uri">https://CRAN.R-project.org/package=testthat</a></p>
+<p>Jeffrey M. Wooldridge (2016). <em>Introductory Econometrics: A Modern Approach</em>. Mason, Ohio :South-Western Cengage Learning.</p>
+<p>Yihui Xie (2018). <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.16. <a href="https://CRAN.R-project.org/package=knitr" class="uri">https://CRAN.R-project.org/package=knitr</a></p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

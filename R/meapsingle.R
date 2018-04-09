@@ -1,0 +1,38 @@
+#' meapsingle
+#'
+#' Wooldridge Source: Collected by Professor Leslie Papke, an economics professor at MSU, from the Michigan Department of Education web site, www.michigan.gov/mde, and the U.S. Census Bureau. Professor Papke kindly provided the data. Data loads lazily.
+#'
+#' @section 
+#'
+#' Used in Text: 100, 145-146, 198
+#'
+#' @docType data
+#'
+#' @usage data('meapsingle')
+#'
+#' @format A data.frame with 229 observations on 18 variables:
+#' \itemize{
+#'  \item \strong{dcode: }{district code}
+#'  \item \strong{bcode: }{building code}
+#'  \item \strong{math4: }{percent satisfactory, 4th grade math}
+#'  \item \strong{read4: }{percent satisfactory, 4th grade reading}
+#'  \item \strong{enroll: }{school enrollment}
+#'  \item \strong{exppp: }{expenditures per pupil, $}
+#'  \item \strong{free: }{percent eligible, free lunch}
+#'  \item \strong{reduced: }{percent eligible, reduced lunch}
+#'  \item \strong{lunch: }{free + reduced}
+#'  \item \strong{medinc: }{zipcode median family, $ (1999)}
+#'  \item \strong{totchild: }{# of children (in zipcode)}
+#'  \item \strong{married: }{# of children in married-couple families}
+#'  \item \strong{single: }{# of children not in married-couple families}
+#'  \item \strong{pctsgle: }{percent of children not in married-couple families}
+#'  \item \strong{zipcode: }{school zipcode}
+#'  \item \strong{lenroll: }{log(enroll)}
+#'  \item \strong{lexppp: }{log(exppp)}
+#'  \item \strong{lmedinc: }{log(medinc)}
+#' }
+#' @source \url{http://www.cengage.com/c/introductory-econometrics-a-modern-approach-6e-wooldridge}
+#' @examples  str(meapsingle)
+"meapsingle"
+ 
+ 

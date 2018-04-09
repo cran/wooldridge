@@ -1,0 +1,33 @@
+#' catholic
+#'
+#' Wooldridge Source: Altonji, J.G., T.E. Elder, and C.R. Taber (2005), “An Evaluation of Instrumental Variable Strategies for Estimating the Effects of Catholic Schooling,” Journal of Human Resources 40, 791-821. Professor Elder kindly provided a subset of the data, with some variables stripped away for confidentiality reasons. Data loads lazily.
+#'
+#' @section 
+#'
+#' Used in Text: pages 267, 551 
+#'
+#' @docType data
+#'
+#' @usage data('catholic')
+#'
+#' @format A data.frame with 7430 observations on 13 variables:
+#' \itemize{
+#'  \item \strong{id: }{person identifier}
+#'  \item \strong{read12: }{reading standardized score}
+#'  \item \strong{math12: }{mathematics standardized score}
+#'  \item \strong{female: }{=1 if female}
+#'  \item \strong{asian: }{=1 if Asian}
+#'  \item \strong{hispan: }{=1 if Hispanic}
+#'  \item \strong{black: }{=1 if black}
+#'  \item \strong{motheduc: }{mother's years of education}
+#'  \item \strong{fatheduc: }{father's years of education}
+#'  \item \strong{lfaminc: }{log of family income}
+#'  \item \strong{hsgrad: }{=1 if graduated from high school by 1994}
+#'  \item \strong{cathhs: }{=1 if attended Catholic HS}
+#'  \item \strong{parcath: }{=1 if a parent reports being Catholic}
+#' }
+#' @source \url{http://www.cengage.com/c/introductory-econometrics-a-modern-approach-6e-wooldridge}
+#' @examples  str(catholic)
+"catholic"
+ 
+ 

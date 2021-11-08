@@ -349,28 +349,87 @@ smallest_rdchem <- lm(rdintens ~ sales + profmarg, data = rdchem,
 stargazer(type = "html",all_rdchem, smallest_rdchem,  single.row = TRUE, header = FALSE, digits=5)
 
 ## ---- message=FALSE-----------------------------------------------------------
-data("intdef")
-
-tbill_model <- lm(i3 ~ inf + def, data = intdef)
+data("intdef") # load data
+# load eXtensible Time Series package.
+# xts is excellent for time series plots and 
+# properly indexing time series.
+library(xts) 
+# create xts object from data.frame
+# First, index year as yearmon class of monthly data. 
+# Note: I add 11/12 to set the month to December, end of year.
+index <- zoo::as.yearmon(intdef$year + 11/12)
+# Next, create the xts object, ordering by the index above.
+intdef.xts <- xts(intdef[ ,-1], order.by = index) 
+# extract 3-month Tbill, inflation, and deficit data
+intdef.xts <- intdef.xts[ ,c("i3", "inf", "def")] 
+# rename with clearer names
+colnames(intdef.xts) <- c("Tbill3mo", "cpi", "deficit") 
+# plot the object, add a title, and place legend at top left.
+plot(x = intdef.xts, 
+     main = "Inflation, Deficits, and Interest Rates",
+     legend.loc = "topleft")
+# Run a Linear regression model
+tbill_model <- lm(Tbill3mo ~ cpi + deficit, data = intdef.xts)
 
 ## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
 stargazer(type = "html",tbill_model, single.row = TRUE, header = FALSE, digits=5)
 
-## ---- message=FALSE-----------------------------------------------------------
-data("barium")
-barium_imports <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
+## ----message=FALSE, warning=FALSE---------------------------------------------
+library(quantmod)
+
+# Tbill, 3 month
+getSymbols("TB3MS", src = "FRED")
+# convert to annual observations and convert index to type `yearmon`.
+TB3MS <- to.yearly(TB3MS, OHLC=FALSE, drop.time = TRUE)
+index(TB3MS) <- zoo::as.yearmon(index(TB3MS))
+
+# Inflation
+getSymbols("FPCPITOTLZGUSA", src = "FRED")
+# Convert the index to yearmon and shift FRED's Jan 1st to Dec
+index(FPCPITOTLZGUSA) <- zoo::as.yearmon(index(FPCPITOTLZGUSA)) + 11/12
+# Rename and update column names
+inflation <- FPCPITOTLZGUSA
+colnames(inflation) <- "inflation"
+
+## Deficit, percent of GDP: Federal outlays - federal receipts
+ # Download outlays
+getSymbols("FYFRGDA188S", src = "FRED")
+ # Lets move the index from Jan 1st to Dec 30th/31st
+index(FYFRGDA188S) <- zoo::as.yearmon(index(FYFRGDA188S)) + 11/12
+ # Rename and update column names
+outlays <- FYFRGDA188S
+colnames(outlays) <- "outlays"
+
+ # Download receipts
+getSymbols("FYONGDA188S", src = "FRED")
+ # Lets move the index from Jan 1st to Dec 30th/31st
+index(FYONGDA188S) <- zoo::as.yearmon(index(FYONGDA188S)) + 11/12
+ # Rename and update column names
+receipts <- FYONGDA188S
+colnames(receipts) <- "receipts"
+
+## ----message=FALSE, warning=FALSE---------------------------------------------
+# create deficits from outlays - receipts
+# xts objects respect their indexing and outline the future
+deficit <- outlays - receipts
+colnames(deficit) <- "deficit"
+
+# Merge and remove leading and trailing NAs for a balanced data matrix
+intdef_updated <- merge(TB3MS, inflation, deficit)
+intdef_updated <- zoo::na.trim(intdef_updated)
+
+#Plot all
+plot(intdef_updated, 
+     main = "T-bill (3mo rate), inflation, and deficit (% of GDP)",
+     legend.loc = "topright",)
 
 ## -----------------------------------------------------------------------------
-barium_seasonal <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6 + feb + mar + apr + may + jun + jul + aug + sep + oct + nov + dec, data = barium)
+updated_model <- lm(TB3MS ~ inflation + deficit, data = intdef_updated)
 
 ## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html",barium_imports, barium_seasonal,  single.row = TRUE, header = FALSE, digits=5)
+updated_model <- lm(TB3MS ~ inflation + deficit, data = intdef_updated)
 
-## -----------------------------------------------------------------------------
-barium_anova <- anova(barium_imports, barium_seasonal)
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html",barium_anova,  single.row = TRUE, header = FALSE, digits=5)
+stargazer(type = "html", updated_model, single.row = TRUE, header = FALSE, digits=5)
 
 ## ---- message=FALSE-----------------------------------------------------------
 data("earns")
@@ -382,22 +441,6 @@ wage_diff <- lm(diff(lhrwage) ~ diff(loutphr), data = earns)
 
 ## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
 stargazer(type = "html",wage_time, wage_diff,  single.row = TRUE, header = FALSE, digits=5)
-
-## -----------------------------------------------------------------------------
-data("barium")
-
-barium_model <- lm(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, 
-                   data = barium)
-
-## -----------------------------------------------------------------------------
-library(prais)
-barium_prais_winsten <- prais_winsten(lchnimp ~ lchempi + lgas + lrtwex + befile6 + affile6 + afdec6, data = barium)
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html", barium_model, single.row = TRUE, header = FALSE, digits=5)
-
-## -----------------------------------------------------------------------------
-barium_prais_winsten
 
 ## ---- message=FALSE, eval=FALSE-----------------------------------------------
 #  data("nyse")
@@ -430,67 +473,6 @@ DD_model <- lm(cdthrte ~ copen + cadmn, data = traffic1)
 
 ## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
 stargazer(type = "html",DD_model,  single.row = TRUE, header = FALSE, digits=5)
-
-## ---- warning=FALSE, message=FALSE--------------------------------------------
-library(plm)
-data("jtrain")
-scrap_panel <- plm(lscrap ~ d88 + d89 + grant + grant_1, data = jtrain,
-            index = c('fcode','year'), model = 'within', effect ='individual')
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html",scrap_panel,  single.row = TRUE, header = FALSE, digits=5)
-
-## ---- message=FALSE, eval=FALSE-----------------------------------------------
-#  data("mroz")
-#  ?mroz
-
-## -----------------------------------------------------------------------------
-wage_educ_model <- lm(lwage ~ educ, data = mroz)
-
-## -----------------------------------------------------------------------------
-fatheduc_model <- lm(educ ~ fatheduc, data = mroz, subset = (inlf==1))
-
-## ---- message=FALSE-----------------------------------------------------------
-library(AER)
-wage_educ_IV <- ivreg(lwage ~ educ | fatheduc, data = mroz)
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html",wage_educ_model, fatheduc_model, wage_educ_IV, single.row = TRUE, header = FALSE, digits=5)
-
-## ---- message=FALSE, eval=FALSE-----------------------------------------------
-#  data("wage2")
-#  ?wage2
-
-## -----------------------------------------------------------------------------
-educ_sibs_model <- lm(educ ~ sibs, data = wage2)
-
-## ---- message=FALSE-----------------------------------------------------------
-library(AER)
-educ_sibs_IV <- ivreg(lwage ~ educ | sibs, data = wage2)
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html",educ_sibs_model, educ_sibs_IV, wage_educ_IV,  single.row = TRUE, header = FALSE, digits=5)
-
-## -----------------------------------------------------------------------------
-data("mroz")
-wage_educ_exper_IV <- ivreg(lwage ~ educ + exper + expersq | exper + expersq + motheduc + fatheduc, data = mroz)
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE----
-stargazer(type = "html",wage_educ_exper_IV,  single.row = TRUE, header = FALSE, digits=5)
-
-## ---- message=FALSE, eval=FALSE-----------------------------------------------
-#  data("openness")
-#  ?openness
-
-## -----------------------------------------------------------------------------
-open_model <-lm(open ~ lpcinc + lland, data = openness)
-
-## -----------------------------------------------------------------------------
-library(AER)
-inflation_IV <- ivreg(inf ~ open + lpcinc | lpcinc + lland, data = openness)
-
-## ---- results='asis', echo=FALSE, warning=FALSE, message=FALSE----------------
-stargazer(type = "html",open_model, inflation_IV,  single.row = TRUE, header = FALSE, digits=5)
 
 ## ---- message=FALSE, eval=FALSE-----------------------------------------------
 #  data("phillips")

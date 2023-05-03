@@ -3,13 +3,21 @@ title: "NEWS"
 output: github_document
 ---
 
+# wooldridge 1.4-3
+
+- Implemented Github Actions for R 
+
+- Fix minor spelling mistakes
+
+- marked `quantmod` examples as DO NOT RUN, due to error on Fedora Linux 36 (Workstation Edition),
+
 # wooldridge 1.4-2
 
-- Reduced scope of vignette, removing examples and Suggested pkgs `AER`, `plm`, and `prais` from the wooldridge DESCRIPTION file. 
+Reduced scope of vignette, removing examples and Suggested pkgs `AER`, `plm`, and `prais` from the wooldridge DESCRIPTION file. 
 
 The wooldridge package builds & tests much quicker and cleaner as `AER` & `plm` in particular have grown larger dependency trees over the years. `prias` also has a habit of breaking its API(see notes around release wooldridge 1.3.1), and this has happened yet again in the recent release of `praise v1.1.2`, triggering  `wooldridge` WARNINGS on CRAN. A helpful note from Prof Brian Ripley was quick to follow, with the usual notification that wooldridge would be removed from CRAN. Given its limited use in an example, it makes sense to remove it all together to avoid future complications. After all, my time as maintainer is limited and this data package should be the easiest of my open source packages to maintain. These Vignette examples are nice, but they are given a much better treatment elsewhere and I refer readers to those sources.
 
-- Added `quantmod` and `xts` (very mature and stable packages) to extend a time series example with real data.
+Added `quantmod` and `xts` (very mature and stable packages) to extend a time series example with real data.
 
 # wooldridge 1.4-1
 
@@ -104,7 +112,7 @@ I removed written descriptions of the example problems, putting more emphasis on
 
 A bibliography section has been added, including package citations and their authors.
 
-An Appendix has been added, pointing readers to a few excellent sources for computing Econometric models with R. These are "Econometrics in R" by Grant Farnsworth and "Using R for Introductory Econometrics" by Florian Hess.
+An Appendix has been added, pointing readers to a few excellent sources for computing Econometric models with R. These are "Econometrics in R" by Grant Farnsworth and "Using R for Introductory Econometrics" by Florian Heiss.
 
 
 # wooldridge 1.0.0

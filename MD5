@@ -1,7 +1,7 @@
-4098abd39019fc3d3bd8c7905ca7c703 *DESCRIPTION
+e5c71b04b15752d7cd5b13852ba1d043 *DESCRIPTION
 84dcc94da3adb52b53ae4fa38fe49e5d *GPL-3
 dc21c19f0d6968ee25d441b2cf46017d *NAMESPACE
-ee1f2734b1ec2e97805410de64319745 *NEWS.md
+f5dbf49762edb59a2500d6c5362f1140 *NEWS.md
 ee285b2ef3562eb2bae605ebf7718458 *R/admnrev.R
 b5760aebd69803100b9bb9f268ee4054 *R/affairs.R
 a020bfa66c2e8ea937579d710c74d38a *R/airfare.R
@@ -117,8 +117,8 @@ ac7029ad627324bb231a34081fa41dbd *R/twoyear.R
 8b0379739e11374c50d7f14d013a9788 *R/wagepan.R
 7a614d7335b52ca19a8626fcb533c65c *R/wageprc.R
 54245a0fd29377539c22a1f88a71ed0e *R/wine.R
-5aeda358fd72d0a7ccaf42cc6e5e9302 *README.md
-94ab22e7d917d2600ad3bff6c0d9bdb1 *build/vignette.rds
+899b1832652c30ac5d9e5de0f3a6eaf6 *README.md
+168fde16d9bafa6840978ca1bd5a096b *build/vignette.rds
 a2e657915767372060aa0206d6bfa59d *data/admnrev.RData
 abf3ecb05c8b87f12ec94be491759d27 *data/affairs.RData
 da5f3d5264aeb420b1d216279316bc7a *data/airfare.RData
@@ -235,9 +235,9 @@ d2987c84ab44a61e35ed35813593701b *data/wage2.RData
 a793af2fcfd0899697bd39d0a79dd139 *data/wagepan.RData
 0ee516254a565210ad332ae4d8eeeef8 *data/wageprc.RData
 bcebe333580fa647b9bd77ffb97c1ba0 *data/wine.RData
-103b98542014c2fa091c904ea4ad8039 *inst/doc/Introductory-Econometrics-Examples.R
-ead45fd1122c6d3f809aca1c5e1f8e83 *inst/doc/Introductory-Econometrics-Examples.Rmd
-b3aaaa37cfe76110a7c8f51b18a911f7 *inst/doc/Introductory-Econometrics-Examples.html
+d192097471c87210f6a81533c8ccf285 *inst/doc/Introductory-Econometrics-Examples.R
+3e678eb5757317c4d7b52c8c04553d20 *inst/doc/Introductory-Econometrics-Examples.Rmd
+4b32c4d28accfae6ab88dd7635cb944e *inst/doc/Introductory-Econometrics-Examples.html
 46aac14513e8a1fddba9cc21bf3fb74c *inst/tinytest/test_wooldridge.R
 8a39b5ad9467ea744fe801ce74a8968b *man/admnrev.Rd
 cfb8a33f1353b15ef3b80cc0dcab7be9 *man/affairs.Rd
@@ -355,4 +355,4 @@ ce4c551c13ff5d62d25c87d2c8e39b36 *man/wage1.Rd
 d21b9e9f582f58c23de4a69f6f745c68 *man/wageprc.Rd
 9f8a3df339516d036335c5376a9e4130 *man/wine.Rd
 f1cec11f5172babc0ffc5c174527d9fe *tests/tinytest.R
-ead45fd1122c6d3f809aca1c5e1f8e83 *vignettes/Introductory-Econometrics-Examples.Rmd
+3e678eb5757317c4d7b52c8c04553d20 *vignettes/Introductory-Econometrics-Examples.Rmd

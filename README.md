@@ -1,8 +1,9 @@
 
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/wooldridge)](https://cran.r-project.org/package=wooldridge)
-[![status](https://tinyverse.netlify.com/badge/wooldridge)](https://CRAN.R-project.org/package=wooldridge)
+[![R build status](https://github.com/r-lib/actions/workflows/R-CMD-check/badge.svg)](https://github.com/JustinMShea/wooldridge/actions?workflow=R-CMD-check)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JustinMShea/wooldridge?branch=master&svg=true)](https://ci.appveyor.com/project/JustinMShea/wooldridge)   [![](https://cranlogs.r-pkg.org/badges/grand-total/wooldridge)](https://CRAN.R-project.org/package=wooldridge)
+[![status](https://tinyverse.netlify.com/badge/wooldridge)](https://CRAN.R-project.org/package=wooldridge)
 
 # wooldridge: 115 Data Sets for Econometrics 
 
@@ -10,7 +11,7 @@ Economics students new to both Econometrics and **R** may find the introduction 
 
 The `wooldridge` package aims to lighten the task by easily loading any data set from the text. The package contains full documentation for each set and all data have been compressed to a fraction of their original size. Just install the package, load it, and call the data you wish to work with.
 
-_**But wait...there's more!**_ A vignette, [Introductory Econometrics Examples](https://justinmshea.github.io/wooldridge/articles/Introductory-Econometrics-Examples.html):sparkles:, illustrates solutions to examples from each chapter of the text, offering a relevant introduction to econometric modelling with **R**. The vignette also includes an Appendix of R resources, such as *Using R for Introductory Econometrics* by Florian Hess.
+_**But wait...there's more!**_ A vignette, [Introductory Econometrics Examples](https://justinmshea.github.io/wooldridge/articles/Introductory-Econometrics-Examples.html):sparkles:, illustrates solutions to examples from each chapter of the text, offering a relevant introduction to econometric modelling with **R**. The vignette also includes an Appendix of R resources, such as *Using R for Introductory Econometrics* by Florian Heiss.
 
 **Note:** All data sets are from the 7th edition (Wooldridge 2020, `ISBN-13: 978-1-337-55886-0`), which is compatible with all other editions.
 
